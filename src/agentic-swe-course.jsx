@@ -460,13 +460,6 @@ export default function AgenticSECourse() {
       `}</style>
 
       <header style={{ maxWidth: "820px", margin: "0 auto", padding: "72px 28px 0" }}>
-        <div style={{
-          fontFamily: "var(--mono)", fontSize: "12px", lineHeight: 1.65, color: palette.muted,
-          padding: "12px 16px", background: palette.surface, border: `1px solid ${palette.border}`,
-          borderRadius: "6px", marginBottom: "28px", maxWidth: "580px",
-        }}>
-          This curriculum was designed in March 2026. If you are reading this three months from now, things might be very different and the industry might be in a much more autonomous place. Please do your own research and validate that this content is still current and at the frontier.
-        </div>
         <div style={{ fontFamily: "var(--mono)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: palette.muted, marginBottom: "22px", fontWeight: 500 }}>
           Inverse Classroom · 5 Sessions + Capstone
         </div>
@@ -485,8 +478,11 @@ export default function AgenticSECourse() {
         <p style={{ fontFamily: "var(--body)", fontSize: "15px", lineHeight: 1.75, color: palette.body, maxWidth: "580px", marginBottom: "16px" }}>
           Each week you complete pre-work on your own (courses, readings, videos) and then we meet for one hour to discuss, ask questions, and work on something together.
         </p>
-        <p style={{ fontFamily: "var(--mono)", fontSize: "12px", color: palette.accent, lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "var(--mono)", fontSize: "12px", color: palette.accent, lineHeight: 1.6, marginBottom: "12px" }}>
           The Anthropic Skilljar courses used in Weeks 1 and 2 award certificates on completion.
+        </p>
+        <p style={{ fontFamily: "var(--mono)", fontSize: "11px", color: palette.muted, lineHeight: 1.6 }}>
+          This curriculum was designed in March 2026. If you are reading this three months from now, things might be very different and the industry might be in a much more autonomous place. Please do your own research and validate that this content is still current and at the frontier.
         </p>
       </header>
 
