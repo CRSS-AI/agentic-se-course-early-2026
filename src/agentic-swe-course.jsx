@@ -140,11 +140,11 @@ const weeks = [
 
 const resources = {
   courses: [
-    { text: "AI Fluency: Framework & Foundations", url: "https://anthropic.skilljar.com/ai-fluency-framework-foundations", note: "Anthropic · optional prerequisite" },
+    { text: "AI Fluency: Framework & Foundations", url: "https://anthropic.skilljar.com/ai-fluency-framework-foundations", note: "Anthropic · prerequisite" },
     { text: "Claude Code in Action", url: "https://anthropic.skilljar.com/claude-code-in-action", note: "Anthropic · Mar 2026" },
     { text: "Introduction to Agent Skills", url: "https://anthropic.skilljar.com/introduction-to-agent-skills", note: "Anthropic · Mar 2026" },
     { text: "Introduction to Model Context Protocol", url: "https://anthropic.skilljar.com/introduction-to-model-context-protocol", note: "Anthropic · Mar 2026" },
-    { text: "AI Capabilities and Limitations", url: "https://anthropic.skilljar.com/ai-capabilities-and-limitations", note: "Anthropic · Apr 2026" },
+    { text: "AI Capabilities and Limitations", url: "https://anthropic.skilljar.com/ai-capabilities-and-limitations", note: "Anthropic · prerequisite · Apr 2026" },
     { text: "Introduction to Subagents", url: "https://anthropic.skilljar.com/introduction-to-subagents", note: "Anthropic · Apr 2026" },
   ],
   docs: [
@@ -503,13 +503,13 @@ export default function AgenticSECourse() {
                 style={{ color: palette.resource, textDecoration: "none", fontStyle: "italic" }}>
                 AI Fluency: Framework & Foundations
               </a>
-              <span style={{ color: palette.muted, fontSize: "12px" }}> — optional, if new to GenAI</span>
+              <span style={{ color: palette.muted, fontSize: "12px" }}> — required</span>
               <div style={{ marginTop: "6px" }}>
                 <a href="https://anthropic.skilljar.com/ai-capabilities-and-limitations" target="_blank" rel="noopener noreferrer"
                   style={{ color: palette.resource, textDecoration: "none", fontStyle: "italic" }}>
                   AI Capabilities and Limitations
                 </a>
-                <span style={{ color: palette.muted, fontSize: "12px" }}> — optional, if new to GenAI</span>
+                <span style={{ color: palette.muted, fontSize: "12px" }}> — required</span>
               </div>
             </div>
           </div>
