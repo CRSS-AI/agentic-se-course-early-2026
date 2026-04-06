@@ -41,6 +41,7 @@ const weeks = [
     prework: [
       { text: "Introduction to Agent Skills", url: "https://anthropic.skilljar.com/introduction-to-agent-skills", verb: "Complete", note: "Anthropic · Mar 2026 · includes exercises and reflections" },
       { text: "Introduction to Model Context Protocol", url: "https://anthropic.skilljar.com/introduction-to-model-context-protocol", verb: "Complete", note: "Anthropic · Mar 2026" },
+      { text: "Introduction to Subagents", url: "https://anthropic.skilljar.com/introduction-to-subagents", verb: "Complete", note: "Anthropic · Apr 2026" },
       { text: "How Claude Code Works", url: "https://code.claude.com/docs/en/how-claude-code-works", verb: "Read", note: "Anthropic" },
       { text: "Effective Context Engineering for AI Agents", url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents", verb: "Read", note: "Anthropic · May 2025" },
     ],
@@ -64,6 +65,7 @@ const weeks = [
     intro: "Agents struggle with large, real-world codebases. This week you learn the Research-Plan-Implement (RPI) workflow and the broader pattern of treating context as a managed, persistent artifact rather than an ephemeral chat.",
     prework: [
       { text: "No Vibes Allowed: Solving Hard Problems in Complex Codebases", url: "https://www.youtube.com/watch?v=rmvDxxNubIg", verb: "Watch", note: "Dex Horthy · AI Engineer · Dec 2025" },
+      { text: "No More Slop: What We Got Wrong About RPI", url: "https://www.youtube.com/watch?v=YwZR6tc7qYg", verb: "Watch", note: "Dex Horthy · AI Engineer · 2026 · watch after the previous talk" },
       { text: "Conductor: Introducing Context-Driven Development for Gemini CLI", url: "https://developers.googleblog.com/conductor-introducing-context-driven-development-for-gemini-cli/", verb: "Read", note: "Google · Dec 2025" },
       { text: "Advanced Context Engineering for Coding Agents", url: "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md", verb: "Browse", note: "HumanLayer · Dec 2025 · optional" },
       { text: "Effective Context Engineering for AI Agents", url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents", verb: "Re-read", note: "Anthropic · May 2025 · with RPI in mind" },
@@ -142,6 +144,8 @@ const resources = {
     { text: "Claude Code in Action", url: "https://anthropic.skilljar.com/claude-code-in-action", note: "Anthropic · Mar 2026" },
     { text: "Introduction to Agent Skills", url: "https://anthropic.skilljar.com/introduction-to-agent-skills", note: "Anthropic · Mar 2026" },
     { text: "Introduction to Model Context Protocol", url: "https://anthropic.skilljar.com/introduction-to-model-context-protocol", note: "Anthropic · Mar 2026" },
+    { text: "AI Capabilities and Limitations", url: "https://anthropic.skilljar.com/ai-capabilities-and-limitations", note: "Anthropic · Apr 2026" },
+    { text: "Introduction to Subagents", url: "https://anthropic.skilljar.com/introduction-to-subagents", note: "Anthropic · Apr 2026" },
   ],
   docs: [
     { text: "Claude Code Product Page", url: "https://claude.com/product/claude-code", note: "Anthropic" },
@@ -153,6 +157,7 @@ const resources = {
     { text: "Effective Context Engineering for AI Agents", url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents", note: "Anthropic · May 2025" },
     { text: "Effective Harnesses for Long-Running Agents", url: "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents", note: "Anthropic · Nov 2025" },
     { text: "No Vibes Allowed: Solving Hard Problems in Complex Codebases", url: "https://www.youtube.com/watch?v=rmvDxxNubIg", note: "HumanLayer · Dec 2025" },
+    { text: "No More Slop: What We Got Wrong About RPI", url: "https://www.youtube.com/watch?v=YwZR6tc7qYg", note: "HumanLayer · 2026" },
     { text: "Advanced Context Engineering for Coding Agents", url: "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md", note: "HumanLayer · Dec 2025" },
     { text: "Conductor: Context-Driven Development for Gemini CLI", url: "https://developers.googleblog.com/conductor-introducing-context-driven-development-for-gemini-cli/", note: "Google · Dec 2025" },
     { text: "Harness Engineering: Leveraging Codex in an Agent-First World", url: "https://openai.com/index/harness-engineering/", note: "OpenAI · Feb 2026" },
@@ -499,6 +504,13 @@ export default function AgenticSECourse() {
                 AI Fluency: Framework & Foundations
               </a>
               <span style={{ color: palette.muted, fontSize: "12px" }}> — optional, if new to GenAI</span>
+              <div style={{ marginTop: "6px" }}>
+                <a href="https://anthropic.skilljar.com/ai-capabilities-and-limitations" target="_blank" rel="noopener noreferrer"
+                  style={{ color: palette.resource, textDecoration: "none", fontStyle: "italic" }}>
+                  AI Capabilities and Limitations
+                </a>
+                <span style={{ color: palette.muted, fontSize: "12px" }}> — optional, if new to GenAI</span>
+              </div>
             </div>
           </div>
           <div style={{ background: palette.surface, border: `1px solid ${palette.border}`, borderRadius: "8px", padding: "22px 24px" }}>
