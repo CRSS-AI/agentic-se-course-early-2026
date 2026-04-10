@@ -2,3 +2,11 @@ node_modules
 dist
 .DS_Store
 *.local
+curriculum.md
+
+# Local tooling and artifacts
+.mcp.json
+.playwright-mcp/
+anthropic-*.png
+local-*.png
+v[0-9]*-*.png
