@@ -1,0 +1,66 @@
+name: Sync fork and deploy
+
+# Keeps the live Pages site in step with the upstream fork.
+#
+# Why a dedicated workflow instead of relying on deploy.yml's `on: push`?
+# Syncing a fork (the web "Sync fork" button, `gh repo sync`, or the
+# merge-upstream API) does NOT emit a push event that triggers `on: push`
+# workflows, and a branch update made here with GITHUB_TOKEN cannot trigger
+# another workflow (GitHub's anti-recursion rule). So this workflow does the
+# whole job itself: pull upstream into main, then build and deploy.
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # daily at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write # merge-upstream updates the main branch
+  pages: write
+  id-token: write
+
+# Share the deploy lane with deploy.yml so the two never deploy at once.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  sync-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync main from upstream
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Merging upstream into main via the fork merge-upstream API..."
+          gh api -X POST "repos/${{ github.repository }}/merge-upstream" \
+            -f branch=main \
+            || echo "merge-upstream returned non-zero (already up to date, or main has diverged and needs a manual sync) — continuing to rebuild current main."
+
+      - name: Check out the freshly synced main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: sync-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
