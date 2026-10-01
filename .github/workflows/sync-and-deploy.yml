@@ -16,6 +16,7 @@ on:
 
 permissions:
   contents: write # merge-upstream updates the main branch
+  actions: write # force-enabling this workflow resets its inactivity counter
   pages: write
   id-token: write
 
@@ -28,6 +29,24 @@ jobs:
   sync-build:
     runs-on: ubuntu-latest
     steps:
+      # GitHub disables scheduled workflows after 60 days with no repository
+      # activity, and scheduled runs that produce no commit do not count as
+      # activity. That is exactly how this workflow died: the last fork commit
+      # was 2026-06-11, and the schedule stopped firing on 2026-08-11, leaving
+      # the live site serving stale content until someone noticed by hand.
+      #
+      # Force-enabling the workflow resets that counter, so the 60 day clock
+      # never runs out while runs keep happening. This step is deliberately
+      # first, so a failure further down the job can never skip it, and it has
+      # no "|| true": if the token cannot do this, the run must fail loudly
+      # rather than let the site drift stale again in silence.
+      - name: Reset the scheduled workflow inactivity counter
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api -X PUT \
+            "repos/${{ github.repository }}/actions/workflows/sync-and-deploy.yml/enable"
+
       - name: Sync main from upstream
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
