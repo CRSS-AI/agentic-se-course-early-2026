@@ -2,12 +2,22 @@ name: Sync fork and deploy
 
 # Keeps the live Pages site in step with the upstream fork.
 #
-# Why a dedicated workflow instead of relying on deploy.yml's `on: push`?
-# Syncing a fork (the web "Sync fork" button, `gh repo sync`, or the
-# merge-upstream API) does NOT emit a push event that triggers `on: push`
-# workflows, and a branch update made here with GITHUB_TOKEN cannot trigger
-# another workflow (GitHub's anti-recursion rule). So this workflow does the
-# whole job itself: pull upstream into main, then build and deploy.
+# This workflow only syncs. The build and deploy live in deploy.yml, which
+# comes from upstream, so the fork always builds the site the way upstream
+# does. An earlier version copied the build steps here; when upstream moved
+# the site to site/ and the old app under /v1/, that copy kept deploying the
+# stale app every night while reporting success.
+#
+# Why dispatch deploy.yml instead of relying on its `on: push`? A branch
+# update made with GITHUB_TOKEN cannot trigger another workflow's push event
+# (GitHub's anti-recursion rule), but workflow_dispatch is exempt from it.
+#
+# Token: GITHUB_TOKEN can never be granted the `workflows` permission, so
+# merge-upstream is refused (HTTP 422) whenever an upstream commit touches
+# .github/workflows/. Add a FORK_SYNC_TOKEN repository secret (a fine-grained
+# token on this repository with Contents and Workflows read/write) and the
+# sync handles those commits too. Without it, such a run fails, and the fix is
+# a manual "Sync fork" on GitHub, which does fire deploy.yml's push trigger.
 
 on:
   schedule:
@@ -15,19 +25,18 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # merge-upstream updates the main branch
-  actions: write # force-enabling this workflow resets its inactivity counter
-  pages: write
-  id-token: write
+  contents: write # merge-upstream updates main; mirrored tags are pushed
+  actions: write # resets this workflow's inactivity counter, dispatches deploy.yml
 
-# Share the deploy lane with deploy.yml so the two never deploy at once.
 concurrency:
-  group: pages
+  group: fork-sync
   cancel-in-progress: false
 
 jobs:
-  sync-build:
+  sync:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.FORK_SYNC_TOKEN || github.token }}
     steps:
       # GitHub disables scheduled workflows after 60 days with no repository
       # activity, and scheduled runs that produce no commit do not count as
@@ -42,44 +51,50 @@ jobs:
       # rather than let the site drift stale again in silence.
       - name: Reset the scheduled workflow inactivity counter
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api -X PUT \
             "repos/${{ github.repository }}/actions/workflows/sync-and-deploy.yml/enable"
 
+      # No "|| echo" here: a refused or conflicting merge fails the run, so a
+      # stuck fork shows up red instead of green. The steps below still run,
+      # so tags and the live site stay current with whatever main holds.
       - name: Sync main from upstream
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Merging upstream into main via the fork merge-upstream API..."
           gh api -X POST "repos/${{ github.repository }}/merge-upstream" \
             -f branch=main \
-            || echo "merge-upstream returned non-zero (already up to date, or main has diverged and needs a manual sync) — continuing to rebuild current main."
+            --jq '"merge_type=\(.merge_type): \(.message)"'
 
-      - name: Check out the freshly synced main
+      - name: Check out main
+        if: ${{ !cancelled() }}
         uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
+          token: ${{ secrets.FORK_SYNC_TOKEN || github.token }}
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
+      # merge-upstream syncs branches only. deploy.yml checks out tags (the
+      # archived v1 site is rebuilt from v1.0), so copy over any upstream tag
+      # the fork lacks. Tags the fork already has are left alone.
+      - name: Mirror new upstream tags
+        if: ${{ !cancelled() }}
+        run: |
+          upstream_url="https://github.com/$(gh api "repos/${{ github.repository }}" --jq .parent.full_name).git"
+          missing=$(comm -13 \
+            <(git ls-remote --tags --refs origin | awk '{print $2}' | sort) \
+            <(git ls-remote --tags --refs "$upstream_url" | awk '{print $2}' | sort))
+          if [ -z "$missing" ]; then
+            echo "The fork already has every upstream tag."
+            exit 0
+          fi
+          echo "Mirroring:" $missing
+          git fetch --no-tags "$upstream_url" $(for ref in $missing; do printf '%s:%s ' "$ref" "$ref"; done)
+          git push origin $missing
 
-      - run: npm ci
-      - run: npm run build
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: sync-build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/deploy-pages@v4
-        id: deployment
+      # With FORK_SYNC_TOKEN, a merge also fires deploy.yml's push trigger; the
+      # pages concurrency group cancels the older of the two runs.
+      - name: Deploy main
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml -R "${{ github.repository }}" --ref main
