@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 2 self-check · Agentic SE Course</title>
+<meta name="description" content="Week 2 self-check: retrieval questions and understanding checks on context engineering, skills, MCP, and subagents.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script>
+/* Pre-paint: track, theme and sidebar. site.js does the rest. */
+(function (d, q, t, m, s) {
+  try { q = new URLSearchParams(location.search); } catch (e) {}
+  t = q && q.get("track");
+  if (t !== "codex" && t !== "claude") { try { t = localStorage.getItem("agentic-se-track"); } catch (e) {} }
+  if (!t) { try { t = JSON.parse(localStorage.getItem("agentic-se:v2:progress")).learner.track; } catch (e) {} }
+  if (t === "codex") d.classList.add("track-codex");
+  m = q && q.get("theme");
+  if (m !== "dark" && m !== "light" && m !== "system") { try { m = localStorage.getItem("agentic-se-theme"); } catch (e) {} }
+  if (m === "dark" || m === "light") d.setAttribute("data-theme", m);
+  d.classList.add("has-js");
+  try { s = localStorage.getItem("agentic-se-sidebar"); } catch (e) {}
+  if (s !== "collapsed" && s !== "expanded") { try { s = matchMedia("(min-width: 1280px)").matches ? "expanded" : "collapsed"; } catch (e) { s = "expanded"; } }
+  d.setAttribute("data-sidebar", s);
+})(document.documentElement);
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the questions</a>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a class="topbar__home" href="index.html">Agentic SE Course</a>
+    <div class="topbar__right">
+      <nav class="week-nav" aria-label="Weeks">
+        <span class="week-nav__label" aria-hidden="true">Weeks</span>
+        <ul class="week-nav__list">
+          <li><a class="week-nav__link" href="week-0.html"><span class="sr-only">Week </span>0</a></li>
+          <li><a class="week-nav__link" href="week-1.html"><span class="sr-only">Week </span>1</a></li>
+          <li><a class="week-nav__link" href="week-2.html" aria-current="true"><span class="sr-only">Week </span>2</a></li>
+          <li><a class="week-nav__link" href="week-3.html"><span class="sr-only">Week </span>3</a></li>
+          <li><a class="week-nav__link" href="week-4.html"><span class="sr-only">Week </span>4</a></li>
+          <li><a class="week-nav__link" href="week-5.html"><span class="sr-only">Week </span>5</a></li>
+        </ul>
+      </nav>
+      <a class="topbar__progress" href="progress.html">My progress</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap page fade-in">
+  <div class="week-head">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div>
+        <p class="label week-head__label"><a href="week-2.html">Week 2: Adapting a Coding Agent</a></p>
+        <h1 class="week-head__title">Week 2 self-check</h1>
+      </div>
+      <fieldset class="track-switch"
+        data-announce-claude="Showing the Claude Code track."
+        data-announce-codex="Showing the Codex track.">
+        <legend class="track-switch__legend">Track</legend>
+        <div class="track-switch__opts">
+          <input type="radio" name="track" id="track-claude" value="claude" checked>
+          <label for="track-claude">Claude Code</label>
+          <input type="radio" name="track" id="track-codex" value="codex">
+          <label for="track-codex">Codex</label>
+        </div>
+      </fieldset>
+    </div>
+    <p class="lede">Five questions on this week's pre-work. Answer each from memory, then reread only the part you missed.</p>
+    <p class="meta" style="margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px">
+      <span>About 10 minutes</span>
+    </p>
+    <div class="score-card">
+      <p class="label">This try</p>
+      <div data-quiz-score="2"></div>
+      <p class="score-card__key" aria-hidden="true">
+        <span><i class="scorebar__cell is-full"></i>Right</span>
+        <span><i class="scorebar__cell is-half"></i>Half</span>
+        <span><i class="scorebar__cell is-zero"></i>Missed</span>
+        <span><i class="scorebar__cell"></i>Not checked</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Certificates proof section -->
+  <section class="section" id="cert-section" aria-labelledby="certs-h">
+    <div class="card" style="margin-bottom:24px">
+      <h2 class="label" id="certs-h" style="margin-bottom:8px">Your certificates</h2>
+      <p class="lede" style="font-size:1.05rem;margin-bottom:8px">Proof of course completion is required before starting this self-check.</p>
+      <p class="meta" style="margin-bottom:16px">The course owner checks your links and screenshots when you send your progress file.</p>
+      <div id="cert-cards"></div>
+    </div>
+  </section>
+
+  <form class="q-form" id="q-form" data-quiz="2" novalidate>
+    <div class="msg msg--warn" id="quiz-gate-msg" role="status" style="margin-bottom:20px" hidden>
+      <p><strong>Locked</strong> until each course above has proof.</p>
+    </div>
+    <fieldset id="quiz-fieldset" style="border:none;padding:0;margin:0">
+    <ol class="q-list">
+
+      <!-- Q1: choice -->
+      <li class="q card" id="q1" data-qid="q1" data-answer="2">
+        <h2 class="label q__num">Question 1 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">What is "context rot" as described in context engineering for AI agents?</legend>
+          <label class="choice"><input type="radio" name="q1" value="0"><span>When project documentation becomes outdated and gives obsolete instructions to the agent</span></label>
+          <label class="choice"><input type="radio" name="q1" value="1"><span>When cache tokens expire on the API server and must be recomputed</span></label>
+          <label class="choice"><input type="radio" name="q1" value="2"><span>The decline in a model's ability to accurately recall information as the number of tokens in context grows, because attention is a finite resource</span></label>
+          <label class="choice"><input type="radio" name="q1" value="3"><span>The loss of model weights caused by running long fine-tuning steps</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q1-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>Context rot refers to the finding that, as the number of tokens in the context window increases, the model's ability to accurately recall information from that context decreases. Context is a finite resource with diminishing marginal returns, and models have an attention budget that every new token depletes, so unnecessary tokens should be avoided.</p>
+          <p class="q__source">Source: <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Effective context engineering for AI agents<span class="sr-only"> (opens in a new tab)</span></a>, section "Context rot".</p>
+        </div>
+      </li>
+
+      <!-- Q2: choice -->
+      <li class="q card" id="q2" data-qid="q2" data-answer="1">
+        <h2 class="label q__num">Question 2 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">Under the Model Context Protocol (MCP) architecture, which three core primitives can an MCP server expose to an agent client?</legend>
+          <label class="choice"><input type="radio" name="q2" value="0"><span>Threads, Embeddings, and Tokens</span></label>
+          <label class="choice"><input type="radio" name="q2" value="1"><span>Tools, Resources, and Prompts</span></label>
+          <label class="choice"><input type="radio" name="q2" value="2"><span>Workflows, Sandboxes, and Webhooks</span></label>
+          <label class="choice"><input type="radio" name="q2" value="3"><span>Contexts, Filters, and Memory</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q2-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>MCP defines three core primitives that servers can expose: Tools (executable functions that AI applications can invoke to perform actions), Resources (data sources that provide contextual information, such as file contents or database records) and Prompts (reusable templates that help structure interactions with language models).</p>
+          <p class="q__source">Source: <a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture#primitives" target="_blank" rel="noopener noreferrer">Model Context Protocol Architecture, "Primitives"<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+        </div>
+      </li>
+
+      <!-- Q3: choice -->
+      <li class="q card" id="q3" data-qid="q3" data-answer="0">
+        <h2 class="label q__num">Question 3 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">How does loading instructions via an Agent Skill differ from placing them directly in a project's root instructions file (such as CLAUDE.md or AGENTS.md)?</legend>
+          <label class="choice"><input type="radio" name="q3" value="0"><span>Skills load their full instructions on demand when invoked, whereas root instruction files load on every session launch</span></label>
+          <label class="choice"><input type="radio" name="q3" value="1"><span>Skills run in a separate cloud container, whereas root instructions run on the local machine</span></label>
+          <label class="choice"><input type="radio" name="q3" value="2"><span>Root instruction files can only contain 100 words, whereas skills have unlimited context size</span></label>
+          <label class="choice"><input type="radio" name="q3" value="3"><span>Skills permanently modify the model weights, whereas root instruction files only apply to the current prompt</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q3-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>Root instruction files load their full contents into context on every session launch, consuming a permanent portion of the attention budget. Skills only expose metadata initially and load their full instructional body on demand when invoked for a relevant task.</p>
+          <p class="q__source">Source: <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener noreferrer">Claude Code Docs, "Skills"<span class="sr-only"> (opens in a new tab)</span></a> and <a href="https://learn.chatgpt.com/docs/build-skills" target="_blank" rel="noopener noreferrer">OpenAI Codex Docs, "Build skills"<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+        </div>
+      </li>
+
+      <!-- Q4, Claude Code track: short answer -->
+      <li class="q card" id="q4" data-qid="q4" data-answer="short" data-track="claude">
+        <h2 class="label q__num">Question 4 of 5 · short answer</h2>
+        <label class="q__prompt" for="q4-input">Why is isolating side tasks in a subagent beneficial for managing the main agent's context window?</label>
+        <textarea id="q4-input" name="q4" rows="3"></textarea>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q4-answer" hidden>
+          <p class="q__verdict" data-verdict>Compare your answer with this one.</p>
+          <p>Running a side task in a subagent keeps verbose intermediate output, such as extensive search results, build logs, or exploratory file reads, out of the primary conversation. The subagent executes within its own isolated context window and returns only the concise summary or finished artefact to the main agent.</p>
+          <p class="q__source">Source: <a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener noreferrer">Claude Code Docs, "Create custom subagents"<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+        </div>
+      </li>
+
+      <!-- Q4, Codex track: short answer -->
+      <li class="q card" id="cq4" data-qid="cq4" data-answer="short" data-track="codex">
+        <h2 class="label q__num">Question 4 of 5 · short answer</h2>
+        <label class="q__prompt" for="cq4-input">Codex runs locally with the workspace-write sandbox and on-request approvals. What can it do without asking you, and what makes it stop and ask?</label>
+        <textarea id="cq4-input" name="cq4" rows="3"></textarea>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="cq4-answer" hidden>
+          <p class="q__verdict" data-verdict>Compare your answer with this one.</p>
+          <p>Inside the workspace it reads files, makes edits and runs routine commands on its own, and every command it spawns, such as git, a package manager or a test runner, stays inside the same sandbox limits. It stops to ask before editing files outside the workspace or running commands that need network access, which is off by default. This spares you from confirming every low-risk command while the sandbox still enforces the boundary.</p>
+          <p class="q__source">Source: <a href="https://learn.chatgpt.com/docs/agent-approvals-security#sandbox-and-approvals" target="_blank" rel="noopener noreferrer">Agent approvals &amp; security (OpenAI Codex docs), "Sandbox and approvals"<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="https://learn.chatgpt.com/docs/sandboxing#what-the-sandbox-does" target="_blank" rel="noopener noreferrer">Sandbox (OpenAI Codex docs), "What the sandbox does" and "Why it matters"<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+        </div>
+      </li>
+
+      <!-- Q5: short answer -->
+      <li class="q card" id="q5" data-qid="q5" data-answer="short">
+        <h2 class="label q__num">Question 5 of 5 · short answer</h2>
+        <label class="q__prompt" for="q5-input">What is context compaction in long-horizon agent workflows, and what is the risk of overly aggressive compaction?</label>
+        <textarea id="q5-input" name="q5" rows="3"></textarea>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q5-answer" hidden>
+          <p class="q__verdict" data-verdict>Compare your answer with this one.</p>
+          <p>Context compaction takes a conversation nearing the context window limit, summarises its contents in a high-fidelity way, and reinitiates a new context window with that summary so the agent can continue with minimal performance degradation. The risk of overly aggressive compaction is losing subtle but critical context whose importance only becomes apparent later, so the art lies in choosing what to keep and what to discard.</p>
+          <p class="q__source">Source: <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Effective context engineering for AI agents<span class="sr-only"> (opens in a new tab)</span></a>, section "Compaction".</p>
+        </div>
+      </li>
+    </ol>
+    </fieldset>
+
+    <section class="score-card quiz-end" data-quiz-end="2" aria-label="Your result" hidden></section>
+
+    <div class="q__actions" style="margin-top:24px">
+      <button type="button" class="btn-text" data-quiz-restart="abandon" hidden>Clear my answers and start again</button>
+      <a class="link-row" href="week-2.html#live-h" style="min-height:32px">
+        <span class="link-row__text"><span class="link-row__verb">Back to</span> <span class="link-row__title">Week 2, live session</span></span>
+        <svg class="arrow arrow--int" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M1 6H11M11 6L6.5 1.5M11 6L6.5 10.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <nav aria-label="More">
+      <ul class="site-footer__links">
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="further-reading.html">Further Reading</a></li>
+        <li><a href="references.bib">BibTeX</a></li>
+        <li><a href="facilitator.html">Facilitator</a></li>
+        <li><a href="progress.html">My progress</a></li>
+        <li><a href="v1/">Previous version</a></li>
+      </ul>
+    </nav>
+    <p class="meta">Agentic SE Course · v2, October 2026</p>
+  </div>
+</footer>
+
+<div class="sr-only" aria-live="polite" data-track-live></div>
+
+<script src="progress.js"></script>
+<script src="site.js"></script>
+<script>
+(function () {
+  "use strict";
+  var P = window.AgenticProgress, S = window.AgenticSite;
+  if (!P || !S) return;
+
+  var WEEK = 2;
+  var REQS = {
+    claude: [
+      { id: "mcp", title: "Introduction to Model Context Protocol", platform: "Claude Academy", defaultUrl: "https://academy.claude.com/courses/introduction-to-model-context-protocol/badge", required: true },
+      { id: "agent-skills", title: "Introduction to Agent Skills", platform: "Claude Academy", noBadge: true, required: false },
+      { id: "subagents", title: "Introduction to Subagents", platform: "Claude Academy", noBadge: true, required: false }
+    ],
+    codex: [
+      { id: "mcp", title: "Introduction to Model Context Protocol", platform: "Claude Academy", defaultUrl: "https://academy.claude.com/courses/introduction-to-model-context-protocol/badge", required: true },
+      { id: "scale-codex", title: "Scale Codex Across Teams and Systems", platform: "OpenAI Academy", hint: "Digital badge link from Accredible email", required: true }
+    ]
+  };
+
+  var pendingImages = {};
+
+  function processImage(file, cb) {
+    if (!file || !file.type.match(/^image\//)) { cb(null, "Please choose an image file."); return; }
+    var reader = new FileReader();
+    reader.onerror = function () { cb(null, "Could not read file."); };
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onerror = function () { cb(null, "Could not load image."); };
+      img.onload = function () {
+        var max = 1000, w = img.width, h = img.height;
+        if (w > max || h > max) {
+          if (w > h) { h = Math.round((h * max) / w); w = max; }
+          else { w = Math.round((w * max) / h); h = max; }
+        }
+        var canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+        cb(canvas.toDataURL("image/jpeg", 0.7), null);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function renderCertCards() {
+    var track = S.track();
+    var list = REQS[track] || [];
+    var certs = P.getCertificates();
+    var container = document.getElementById("cert-cards");
+    if (!container) return;
+
+    var html = list.map(function (req) {
+      if (req.noBadge) {
+        return '<div class="card" style="margin-bottom:12px;background:var(--surface)">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:4px">' +
+            '<div><h3 class="h-card" style="margin:0">' + S.esc(req.title) + '</h3><span class="meta">' + S.esc(req.platform) + '</span></div>' +
+            '<span class="tag">No badge offered for this course</span>' +
+          '</div>' +
+          '<p class="meta" style="margin:4px 0 0">No badge offered for this course. Proof is not required for this self-check.</p>' +
+        '</div>';
+      }
+
+      var key = "w" + WEEK + ":" + req.id;
+      var c = certs[key];
+      var isSaved = c && (c.url || c.image);
+
+      if (isSaved) {
+        var proofHTML = "";
+        if (c.url) proofHTML += '<p class="meta" style="margin:4px 0"><strong>URL:</strong> <a href="' + S.esc(c.url) + '" target="_blank" rel="noopener noreferrer">' + S.esc(c.url) + '<span class="sr-only"> (opens in a new tab)</span></a></p>';
+        if (c.image) proofHTML += '<div style="margin:6px 0"><p class="meta" style="margin:0 0 4px"><strong>Screenshot:</strong></p><img src="' + S.esc(c.image) + '" alt="Screenshot proof for ' + S.esc(req.title) + '" style="max-height:80px;border-radius:4px;border:1px solid var(--border)"></div>';
+        if (c.earnedOn) proofHTML += '<p class="meta" style="margin:4px 0"><strong>Earned on:</strong> ' + S.esc(c.earnedOn) + '</p>';
+
+        return '<div class="card" style="margin-bottom:12px;background:var(--surface)">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">' +
+            '<div><h3 class="h-card" style="margin:0">' + S.esc(req.title) + '</h3><span class="meta">' + S.esc(req.platform) + '</span></div>' +
+            '<span class="tag tag--core">Proof saved</span>' +
+          '</div>' +
+          proofHTML +
+          '<div style="margin-top:10px">' +
+            '<button type="button" class="btn btn--small" data-remove-trigger="' + req.id + '">Remove</button>' +
+            '<div id="confirm-' + req.id + '" hidden style="margin-top:8px;padding:8px 12px;background:var(--page);border:1px solid var(--border);border-radius:4px">' +
+              '<p class="meta" style="margin:0 0 8px">Are you sure you want to remove this proof?</p>' +
+              '<div class="btn-row">' +
+                '<button type="button" class="btn btn--small btn--primary" data-confirm-yes="' + req.id + '">Yes, remove</button>' +
+                '<button type="button" class="btn btn--small" data-confirm-no="' + req.id + '">Cancel</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }
+
+      var hintText = req.defaultUrl ? 'For example: ' + req.defaultUrl : req.hint ? req.hint : 'HTTPS link';
+      return '<div class="card" style="margin-bottom:12px;background:var(--surface)">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">' +
+          '<div><h3 class="h-card" style="margin:0">' + S.esc(req.title) + '</h3><span class="meta">' + S.esc(req.platform) + '</span></div>' +
+          '<span class="tag tag--draft">Proof required</span>' +
+        '</div>' +
+        '<div style="display:grid;gap:8px;margin-top:8px">' +
+          '<div>' +
+            '<label class="field-label" for="url-' + req.id + '">Badge link or credential URL</label>' +
+            '<input type="url" class="field field--wide" id="url-' + req.id + '" placeholder="https://..." style="margin-bottom:2px">' +
+            '<p class="field-hint" style="margin:0 0 6px">' + S.esc(hintText) + '</p>' +
+          '</div>' +
+          '<div>' +
+            '<label class="field-label" for="file-' + req.id + '">Or upload badge screenshot</label>' +
+            '<input type="file" class="field" id="file-' + req.id + '" accept="image/*" style="margin-bottom:2px">' +
+            '<div id="preview-' + req.id + '" style="margin-top:4px"></div>' +
+          '</div>' +
+          '<div>' +
+            '<label class="field-label" for="date-' + req.id + '">Date earned (optional)</label>' +
+            '<input type="date" class="field" id="date-' + req.id + '" style="max-width:200px">' +
+          '</div>' +
+          '<div id="msg-' + req.id + '" role="alert"></div>' +
+          '<div>' +
+            '<button type="button" class="btn btn--primary btn--small" data-save="' + req.id + '">Save proof</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+
+    container.innerHTML = html;
+    bindEvents();
+    updateGating();
+  }
+
+  function bindEvents() {
+    var container = document.getElementById("cert-cards");
+    if (!container) return;
+
+    var track = S.track();
+    var list = (REQS[track] || []).filter(function (r) { return r.required; });
+
+    list.forEach(function (req) {
+      var fileInput = document.getElementById("file-" + req.id);
+      if (fileInput) {
+        fileInput.addEventListener("change", function () {
+          var file = fileInput.files && fileInput.files[0];
+          var prev = document.getElementById("preview-" + req.id);
+          if (!file) { pendingImages[req.id] = null; if (prev) prev.innerHTML = ""; return; }
+          processImage(file, function (dataUrl, err) {
+            if (err) {
+              if (prev) prev.innerHTML = '<span class="meta" style="color:var(--orange)">' + S.esc(err) + '</span>';
+              pendingImages[req.id] = null;
+            } else {
+              pendingImages[req.id] = dataUrl;
+              if (prev) prev.innerHTML = '<img src="' + dataUrl + '" alt="Screenshot preview" style="max-height:60px;border-radius:4px;border:1px solid var(--border)">';
+            }
+          });
+        });
+      }
+
+      var saveBtn = container.querySelector('[data-save="' + req.id + '"]');
+      if (saveBtn) {
+        saveBtn.addEventListener("click", function () {
+          var urlInput = document.getElementById("url-" + req.id);
+          var dateInput = document.getElementById("date-" + req.id);
+          var msgBox = document.getElementById("msg-" + req.id);
+          var url = urlInput ? urlInput.value.trim() : "";
+          var date = dateInput ? dateInput.value : "";
+          var image = pendingImages[req.id] || null;
+
+          var res = P.setCertificate(WEEK, req.id, {
+            course: req.title,
+            platform: req.platform,
+            url: url || null,
+            image: image,
+            earnedOn: date || null
+          });
+
+          if (!res.ok) {
+            if (msgBox) msgBox.innerHTML = '<p class="msg msg--error" style="margin-top:6px">' + res.errors.map(S.esc).join("<br>") + '</p>';
+          } else {
+            pendingImages[req.id] = null;
+            renderCertCards();
+            S.announce("Saved certificate proof for " + req.title + ".");
+          }
+        });
+      }
+
+      var removeTrigger = container.querySelector('[data-remove-trigger="' + req.id + '"]');
+      if (removeTrigger) {
+        removeTrigger.addEventListener("click", function () {
+          var confirmBox = document.getElementById("confirm-" + req.id);
+          if (confirmBox) confirmBox.hidden = false;
+        });
+      }
+
+      var confirmYes = container.querySelector('[data-confirm-yes="' + req.id + '"]');
+      if (confirmYes) {
+        confirmYes.addEventListener("click", function () {
+          P.removeCertificate(WEEK, req.id);
+          renderCertCards();
+          S.announce("Removed certificate proof for " + req.title + ".");
+        });
+      }
+
+      var confirmNo = container.querySelector('[data-confirm-no="' + req.id + '"]');
+      if (confirmNo) {
+        confirmNo.addEventListener("click", function () {
+          var confirmBox = document.getElementById("confirm-" + req.id);
+          if (confirmBox) confirmBox.hidden = true;
+        });
+      }
+    });
+  }
+
+  function updateGating() {
+    var track = S.track();
+    var list = (REQS[track] || []).filter(function (r) { return r.required; });
+    var certs = P.getCertificates();
+    var allSatisfied = list.every(function (req) {
+      var c = certs["w" + WEEK + ":" + req.id];
+      return c && (c.url || c.image);
+    });
+
+    var gateMsg = document.getElementById("quiz-gate-msg");
+    var quizFieldset = document.getElementById("quiz-fieldset");
+
+    if (gateMsg) gateMsg.hidden = allSatisfied;
+    if (quizFieldset) quizFieldset.disabled = !allSatisfied;
+  }
+
+  S.onRender(function () {
+    renderCertCards();
+  });
+})();
+</script>
+</body>
+</html>

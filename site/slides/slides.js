@@ -1,0 +1,237 @@
+/* =====================================================================
+   slides.js: shared engine for every session deck.
+
+   Each session*.html only needs:
+     <link rel="stylesheet" href="./slides.css" />
+     <div class="progress" id="progress"></div>
+     [... .slide elements ...]
+     <script src="./slides.js"></script>
+
+   This script discovers the slides, builds the bottom navigation (a
+   breadcrumb, "Course › Week N: <title> › Slides", on the left, from
+   <body data-week="N"> and WEEK_TITLES below; Run-sheet, Contents, Prev,
+   the counter and Next on the right), the TOC drawer, and wires keyboard,
+   click, and touch handlers. The Week crumb is #weekPageLink.
+
+   The current slide is kept in the URL hash (#5 is the fifth slide) and
+   in localStorage per deck, so leaving for the week page and coming
+   back, by the browser's Back button or the "Open slides" link,
+   returns to the same slide.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  // ----- Discover slides -----
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  if (total === 0) return;
+
+  // Make sure exactly one slide is active on first paint.
+  let current = slides.findIndex((s) => s.classList.contains('active'));
+  if (current < 0) {
+    current = 0;
+    slides[0].classList.add('active');
+  }
+
+  // ----- Build bottom navigation: breadcrumb left, controls right -----
+  // Week titles match WEEKS in ../site.js.
+  const WEEK_TITLES = {
+    0: 'Getting Started',
+    1: 'One Coding Agent',
+    2: 'Adapting a Coding Agent',
+    3: 'One change through the whole loop',
+    4: 'From harness to factory',
+  };
+  const weekAttr = document.body.getAttribute('data-week');
+  const hasWeek = weekAttr !== null && Object.prototype.hasOwnProperty.call(WEEK_TITLES, weekAttr);
+  const weekPageHref = hasWeek ? '../week-' + weekAttr + '.html' : '../index.html';
+  const runsheetHref = weekAttr === '1' || weekAttr === '4' ? '../facilitator-week-' + weekAttr + '.html' : '../facilitator.html';
+  const sep = '<span class="nav-crumbs-sep" aria-hidden="true">›</span>';
+  const crumbs = hasWeek
+    ? '<li class="nav-crumbs-course"><a href="../index.html">Course</a></li>' +
+      '<li class="nav-crumbs-week">' + sep + '<a id="weekPageLink" href="' + weekPageHref + '">Week ' + weekAttr +
+        '<span class="nav-crumbs-title">: ' + WEEK_TITLES[weekAttr] + '</span></a></li>'
+    : '<li class="nav-crumbs-week"><a id="weekPageLink" href="../index.html">Course</a></li>';
+
+  const nav = document.createElement('div');
+  nav.className = 'nav';
+  nav.innerHTML = [
+    '<nav class="nav-crumbs" aria-label="Breadcrumb"><ol>' + crumbs +
+      '<li class="nav-crumbs-here">' + sep + '<span aria-current="page">Slides</span></li></ol></nav>',
+    '<div class="nav-group">',
+    '<a class="nav-btn nav-btn-runsheet" id="runsheetLink" href="' + runsheetHref + '">Run-sheet</a>',
+    '<button class="nav-btn nav-btn-toc" id="tocToggle" type="button" aria-label="Open slide contents">' +
+      '<svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">' +
+        '<path d="M0.5 1h10M0.5 4.5h10M0.5 8h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>' +
+      '</svg>' +
+      '<span>Contents</span>' +
+    '</button>',
+    '<button class="nav-btn" id="prevBtn" type="button">&larr; Prev</button>',
+    '<span class="nav-count" id="slideCount">1 / ' + total + '</span>',
+    '<button class="nav-btn" id="nextBtn" type="button">Next &rarr;</button>',
+    '</div>',
+  ].join('');
+  document.body.appendChild(nav);
+  const toggleBtn = nav.querySelector('#tocToggle');
+  const slideCount = nav.querySelector('#slideCount');
+  nav.querySelector('#prevBtn').addEventListener('click', () => navigate(-1));
+  nav.querySelector('#nextBtn').addEventListener('click', () => navigate(1));
+
+  // ----- Build TOC drawer -----
+  const overlay = document.createElement('div');
+  overlay.className = 'toc-overlay';
+  overlay.id = 'tocOverlay';
+  document.body.appendChild(overlay);
+
+  const drawer = document.createElement('aside');
+  drawer.className = 'toc';
+  drawer.id = 'toc';
+  drawer.setAttribute('aria-label', 'Slide contents');
+
+  const titleParts = (document.title || '').split('·').map((s) => s.trim());
+  const deckLabel = titleParts[0] || 'Session';
+  const deckTitle = titleParts.slice(1).join(' · ') || '';
+
+  const drawerHeader = document.createElement('div');
+  drawerHeader.className = 'toc-header';
+  drawerHeader.innerHTML =
+    '<div class="toc-deck-label"></div>' +
+    '<div class="toc-deck-title"></div>';
+  drawerHeader.querySelector('.toc-deck-label').textContent = deckLabel;
+  drawerHeader.querySelector('.toc-deck-title').textContent = deckTitle;
+  drawer.appendChild(drawerHeader);
+
+  const list = document.createElement('div');
+  list.className = 'toc-list';
+  drawer.appendChild(list);
+  document.body.appendChild(drawer);
+
+  function getSlideTitle(slide) {
+    const h1 = slide.querySelector('h1');
+    const h2 = slide.querySelector('h2');
+    const label = slide.querySelector('.slide-label');
+    const subtitle = slide.querySelector('.subtitle');
+    if (h1) return h1.textContent.trim();
+    if (h2) return h2.textContent.trim();
+    if (label) return label.textContent.trim();
+    if (subtitle) {
+      const t = subtitle.textContent.trim();
+      return t.length > 70 ? t.slice(0, 67) + '…' : t;
+    }
+    return 'Slide';
+  }
+
+  const tocItems = slides.map((slide, i) => {
+    const item = document.createElement('div');
+    item.className = 'toc-item';
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    const num = document.createElement('span');
+    num.className = 'toc-item-num';
+    num.textContent = String(i + 1).padStart(2, '0');
+    const title = document.createElement('span');
+    title.className = 'toc-item-title';
+    title.textContent = getSlideTitle(slide);
+    item.appendChild(num);
+    item.appendChild(title);
+    item.addEventListener('click', () => {
+      showSlide(i);
+      closeTOC();
+    });
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        showSlide(i);
+        closeTOC();
+      }
+    });
+    list.appendChild(item);
+    return item;
+  });
+
+  // ----- Slide navigation -----
+  const progress = document.getElementById('progress');
+
+  const storeKey = 'agentic-se-slide:' + location.pathname.split('/').pop();
+  function remember() {
+    try { history.replaceState(null, '', '#' + (current + 1)); } catch (e) {}
+    try { localStorage.setItem(storeKey, String(current + 1)); } catch (e) {}
+  }
+  function slideFromHash() {
+    const m = /^#(\d+)$/.exec(location.hash);
+    return m ? parseInt(m[1], 10) - 1 : null;
+  }
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    // The breadcrumb sits on the slide itself, so it follows dark slides.
+    document.body.classList.toggle('on-dark-slide', slides[current].classList.contains('slide-dark'));
+    if (slideCount) slideCount.textContent = (current + 1) + ' / ' + total;
+    if (progress) progress.style.width = ((current + 1) / total * 100) + '%';
+    syncTOC();
+    remember();
+  }
+  function navigate(dir) { showSlide(current + dir); }
+
+  function syncTOC() {
+    tocItems.forEach((it, i) => it.classList.toggle('active', i === current));
+    if (drawer.classList.contains('open') && tocItems[current]) {
+      tocItems[current].scrollIntoView({ block: 'nearest' });
+    }
+  }
+  function openTOC() {
+    drawer.classList.add('open');
+    overlay.classList.add('visible');
+    document.body.classList.add('toc-open');
+    syncTOC();
+  }
+  function closeTOC() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('visible');
+    document.body.classList.remove('toc-open');
+  }
+  function toggleTOC() {
+    if (drawer.classList.contains('open')) closeTOC();
+    else openTOC();
+  }
+
+  toggleBtn.addEventListener('click', toggleTOC);
+  overlay.addEventListener('click', closeTOC);
+
+  // ----- Keyboard shortcuts -----
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); navigate(1); return; }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); navigate(-1); return; }
+    if (e.key === 'Home') { e.preventDefault(); showSlide(0); return; }
+    if (e.key === 'End') { e.preventDefault(); showSlide(total - 1); return; }
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      e.preventDefault();
+      closeTOC();
+      return;
+    }
+    if ((e.key === 't' || e.key === 'T') && !e.target.matches('input, textarea')) {
+      e.preventDefault();
+      toggleTOC();
+    }
+  });
+
+  // ----- Touch swipe -----
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(diff) > 50) navigate(diff < 0 ? 1 : -1);
+  });
+
+  // ----- Initial paint: the hash wins, then the last slide shown -----
+  let start = slideFromHash();
+  if (start === null) {
+    try { const saved = parseInt(localStorage.getItem(storeKey), 10); if (saved > 0) start = saved - 1; } catch (e) {}
+  }
+  showSlide(start === null ? current : start);
+  window.addEventListener('hashchange', () => {
+    const n = slideFromHash();
+    if (n !== null && n !== current) showSlide(n);
+  });
+})();

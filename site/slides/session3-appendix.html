@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Session 3 Appendix &middot; Working in Complex Codebases</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./slides.css" />
+</head>
+<body data-week="3">
+
+<div class="progress" id="progress"></div>
+
+<!-- ================== APPENDIX divider ================== -->
+<div class="slide slide-dark active" id="s0">
+  <div class="slide-inner">
+    <div class="slide-label"><a href="../week-3.html" class="title-link">Reference &middot; v1 Archive</a></div>
+    <h2><a href="../week-3.html" class="title-link">Week 3 Reference Material (v1)</a></h2>
+    <p class="subtitle" style="color: #D4D4D4;">Reference material from version 1 Week 3 (invariants, approaches, debates). Not part of the version 2 live session.</p>
+    <p style="margin-top: 16px; font-size: 15px; color: var(--muted);"><a href="../week-3.html" style="color: var(--orange); text-decoration: underline;">Return to Week 3 page</a>.</p>
+  </div>
+</div>
+
+<!-- ================== SLIDE 1: Invariant 1 ================== -->
+<div class="slide" id="s1">
+  <div class="slide-inner">
+    <div class="slide-label">Invariant 1 of 6</div>
+    <h2>Context Is the Only Lever</h2>
+    <p class="subtitle">LLMs are stateless. Tokens in context determine next tokens.</p>
+    <div class="two-col" style="gap: 20px;">
+      <div>
+        <div class="col-label">Context priorities</div>
+        <div class="items" style="margin-top: 8px;">
+          <div class="item"><span class="item-num">1</span><span class="item-text"><strong>Correctness:</strong> wrong facts mislead.</span></div>
+          <div class="item"><span class="item-num">2</span><span class="item-text"><strong>Completeness:</strong> missing facts cascade.</span></div>
+          <div class="item"><span class="item-num">3</span><span class="item-text"><strong>Noise:</strong> surplus tokens degrade attention.</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">Trajectory</div>
+        <div class="quote" style="margin-top: 10px;">
+          <p style="font-size: 13px;">Errors made upstream are amplified downstream, so review research and plans first.</p>
+          <cite>Summary of the ACE-FCA write-up</cite>
+        </div>
+      </div>
+    </div>
+    <div class="source-row">
+      <span class="pill">Anthropic</span><span class="pill">ACE-FCA</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================== SLIDE 2: Invariant 6 ================== -->
+<div class="slide" id="s2">
+  <div class="slide-inner">
+    <div class="slide-label">Invariant 6 of 6</div>
+    <h2>Enforce Rules Mechanically</h2>
+    <p class="subtitle">Prompts leak under load. Code and CI cannot be talked past.</p>
+    <div class="two-col" style="gap: 20px;">
+      <div>
+        <div class="quote" style="margin-top: 8px;">
+          <p style="font-size: 13px;">Where a rule must hold every time, enforce it with code or CI, not with a prompt.</p>
+          <cite>Course summary</cite>
+        </div>
+      </div>
+      <div>
+        <div class="items" style="margin-top: 8px; gap: 6px;">
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;"><strong>Tests:</strong> red checks block bad code.</span></div>
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;"><strong>Linters:</strong> block bad commits automatically.</span></div>
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;"><strong>Gates:</strong> human approves plan file first.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="source-row">
+      <span class="pill">Anthropic</span><span class="pill">ACE-FCA</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================== SLIDE 3: Anthropic ================== -->
+<div class="slide" id="s3">
+  <div class="slide-inner">
+    <div class="slide-label">Approach 1 &middot; Anthropic &middot; Sep 2025</div>
+    <h2>The Abstract Frame</h2>
+    <div class="grid-2" style="margin-top: 14px;">
+      <div class="card card-accent">
+        <h3>JIT retrieval</h3>
+        <p>Load files only when needed.</p>
+      </div>
+      <div class="card card-accent">
+        <h3>Progressive disclosure</h3>
+        <p>Discover context iteratively across turns.</p>
+      </div>
+      <div class="card card-accent">
+        <h3>Compaction</h3>
+        <p>Summarise decisions, drop tool clutter.</p>
+      </div>
+      <div class="card card-accent">
+        <h3>Subagents</h3>
+        <p>Run focused tasks in fresh windows.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================== SLIDE 4: RPI ================== -->
+<div class="slide" id="s4">
+  <div class="slide-inner">
+    <div class="slide-label">Approach 2 &middot; HumanLayer &middot; Dec 2025</div>
+    <h2>Research, Plan, Implement</h2>
+    <div class="grid-3" style="margin-top: 14px;">
+      <div class="card card-accent">
+        <h3>Research</h3>
+        <p>Codebase facts, isolated from ticket.</p>
+      </div>
+      <div class="card card-accent">
+        <h3>Plan</h3>
+        <p>Exact files, changes, test checks. Reviewed first.</p>
+      </div>
+      <div class="card card-accent">
+        <h3>Implement</h3>
+        <p>Execute against reviewed plan file.</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top: 14px;">
+      <p style="font-size: 13px;">A bad line in a plan can produce hundreds of bad lines of code.</p>
+      <cite>Summary of the ACE-FCA write-up</cite>
+    </div>
+  </div>
+</div>
+
+<!-- ================== SLIDE 5: CRISPY / QRSPI ================== -->
+<div class="slide" id="s5">
+  <div class="slide-inner">
+    <div class="slide-label">Approach 3 &middot; HumanLayer &middot; Mar 2026</div>
+    <h2>CRISPY <span class="pill pill-orange" style="vertical-align: middle; font-size: 10px;">QRSPI</span></h2>
+    <svg viewBox="0 0 760 120" width="100%" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: 10px 0 8px;">
+      <g font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0A0A0A">
+        <rect x="10" y="36" width="80" height="48" rx="6" fill="#FAE7DC" stroke="#CC785C" stroke-width="1"/>
+        <text x="50" y="58" text-anchor="middle">Questions</text>
+        <text x="50" y="74" text-anchor="middle" font-size="9" fill="#737373">align</text>
+        <rect x="100" y="36" width="80" height="48" rx="6" fill="#FAE7DC" stroke="#CC785C" stroke-width="1"/>
+        <text x="140" y="58" text-anchor="middle">Research</text>
+        <text x="140" y="74" text-anchor="middle" font-size="9" fill="#737373">align</text>
+        <rect x="190" y="36" width="80" height="48" rx="6" fill="#FAE7DC" stroke="#CC785C" stroke-width="1"/>
+        <text x="230" y="54" text-anchor="middle">Design</text>
+        <text x="230" y="68" text-anchor="middle">discuss</text>
+        <text x="230" y="80" text-anchor="middle" font-size="9" fill="#737373">align</text>
+        <rect x="280" y="36" width="80" height="48" rx="6" fill="#FAE7DC" stroke="#CC785C" stroke-width="1"/>
+        <text x="320" y="54" text-anchor="middle">Structure</text>
+        <text x="320" y="68" text-anchor="middle">outline</text>
+        <text x="320" y="80" text-anchor="middle" font-size="9" fill="#737373">align</text>
+        <rect x="370" y="36" width="80" height="48" rx="6" fill="#FAE7DC" stroke="#CC785C" stroke-width="1"/>
+        <text x="410" y="58" text-anchor="middle">Plan</text>
+        <text x="410" y="74" text-anchor="middle" font-size="9" fill="#737373">align</text>
+        <rect x="460" y="36" width="80" height="48" rx="6" fill="#F7F7F7" stroke="#525252" stroke-width="1"/>
+        <text x="500" y="54" text-anchor="middle">Work</text>
+        <text x="500" y="68" text-anchor="middle">tree</text>
+        <text x="500" y="80" text-anchor="middle" font-size="9" fill="#737373">execute</text>
+        <rect x="550" y="36" width="80" height="48" rx="6" fill="#F7F7F7" stroke="#525252" stroke-width="1"/>
+        <text x="590" y="58" text-anchor="middle">Implement</text>
+        <text x="590" y="74" text-anchor="middle" font-size="9" fill="#737373">execute</text>
+        <rect x="640" y="36" width="80" height="48" rx="6" fill="#F7F7F7" stroke="#525252" stroke-width="1"/>
+        <text x="680" y="54" text-anchor="middle">Pull</text>
+        <text x="680" y="68" text-anchor="middle">request</text>
+        <text x="680" y="80" text-anchor="middle" font-size="9" fill="#737373">execute</text>
+      </g>
+      <text x="215" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#CC785C" letter-spacing="0.08em">FIVE ALIGNMENT PHASES</text>
+      <text x="590" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#525252" letter-spacing="0.08em">THREE EXECUTION PHASES</text>
+    </svg>
+    <p style="margin-top: 8px; font-size: 14px; color: var(--body);">Splits planning into smaller alignment stages before code execution.</p>
+  </div>
+</div>
+
+<!-- ================== SLIDE 6: Conductor ================== -->
+<div class="slide" id="s6">
+  <div class="slide-inner">
+    <div class="slide-label">Approach 4 &middot; Google &middot; Dec 2025</div>
+    <h2>Conductor</h2>
+    <div class="items" style="margin-top: 14px;">
+      <div class="item">
+        <span class="item-text"><code style="font-family: var(--mono); font-size: 13px;">/conductor:setup</code> records stack and goals into repository files.</span>
+      </div>
+      <div class="item">
+        <span class="item-text"><code style="font-family: var(--mono); font-size: 13px;">/conductor:newTrack</code> drafts specs and phased plans for human review.</span>
+      </div>
+      <div class="item">
+        <span class="item-text"><code style="font-family: var(--mono); font-size: 13px;">/conductor:implement</code> executes plans with saved checkpoints.</span>
+      </div>
+    </div>
+    <div class="quote" style="margin-top: 12px;">
+      <p style="font-size: 13px;">Conductor moves context out of chat logs into specs and plans kept beside the code.</p>
+      <cite>Summary of the Conductor announcement</cite>
+    </div>
+  </div>
+</div>
+
+<!-- ================== SLIDE 7: Debate 1 ================== -->
+<div class="slide" id="s7">
+  <div class="slide-inner">
+    <div class="slide-label">Debate 1 &middot; Human review placement</div>
+    <h2>Read the Plan, or Read the Code?</h2>
+    <div class="two-col" style="gap: 20px; margin-top: 12px;">
+      <div class="card" style="border-left: 3px solid var(--orange); padding-left: 16px;">
+        <h3>ACE-FCA (Dec 2025)</h3>
+        <p style="font-style: italic; font-size: 13px;">Reviewing research and plans gives more leverage than reviewing code.</p>
+      </div>
+      <div class="card" style="border-left: 3px solid var(--orange); padding-left: 16px;">
+        <h3>Everything We Got Wrong About RPI (Mar 2026)</h3>
+        <p style="font-style: italic; font-size: 13px;">Horthy traces failures to engineers handing their thinking to the agent.</p>
+      </div>
+    </div>
+    <p style="margin-top: 14px; font-size: 14px; color: var(--body);">When plans create false confidence, where does human review pay off?</p>
+  </div>
+</div>
+
+<!-- ================== SLIDE 8: Debate 2 ================== -->
+<div class="slide" id="s8">
+  <div class="slide-inner">
+    <div class="slide-label">Debate 2 &middot; Pipeline ceremony</div>
+    <h2>When Is the Pipeline Overkill?</h2>
+    <p class="subtitle" style="margin-bottom: 8px;">Match ceremony to task complexity.</p>
+    <table class="table">
+      <thead>
+        <tr><th>Task scope</th><th>Workflow</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Typo or colour:</strong></td><td>Direct prompt.</td></tr>
+        <tr><td><strong>Single file:</strong></td><td>Short plan.</td></tr>
+        <tr><td><strong>Multi-file feature:</strong></td><td>Research, plan, implement.</td></tr>
+        <tr><td><strong>Refactor:</strong></td><td>Full pipeline and subagents.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ================== SLIDE 9: Debate 3 ================== -->
+<div class="slide" id="s9">
+  <div class="slide-inner">
+    <div class="slide-label">Debate 3 &middot; Work structure</div>
+    <h2>Vertical Slices or Horizontal Layers?</h2>
+    <div class="two-col" style="gap: 20px; margin-top: 12px;">
+      <div class="card" style="border-left: 3px solid #B85450; padding-left: 16px;">
+        <h3 style="color: #B85450;">Horizontal</h3>
+        <p style="font-size: 13px;">Migrations, then services, then UI. Nothing runs end-to-end until the end.</p>
+      </div>
+      <div class="card card-accent">
+        <h3>Vertical</h3>
+        <p style="font-size: 13px;">Thin slice with mocks first, then real DB. Tests run at each seam.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================== SLIDE 10: Debate 4 ================== -->
+<div class="slide" id="s10">
+  <div class="slide-inner">
+    <div class="slide-label">Debate 4 &middot; Verification limits</div>
+    <h2>How Far Can the Agent Verify Itself?</h2>
+    <div class="two-col" style="gap: 20px; margin-top: 12px;">
+      <div>
+        <div class="col-label">Machines verify</div>
+        <div class="items" style="margin-top: 6px; gap: 4px;">
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;">Test and linter passes</span></div>
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;">Type-check and build runs</span></div>
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;">Browser automation flows</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">Humans judge</div>
+        <div class="items" style="margin-top: 6px; gap: 4px;">
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;">Architectural coherence</span></div>
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;">Future maintainability</span></div>
+          <div class="item" style="padding: 6px 12px;"><span class="item-text" style="font-size: 13px;">Genuine user intent</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="./slides.js"></script>
+
+</body>
+</html>

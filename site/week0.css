@@ -1,0 +1,41 @@
+/* ==========================================================================
+   week0.css: Week 0 (Getting Started) page only. The install commands in
+   the "Install your agent" cards, each with a copy button. Everything else
+   on the page uses shared components from site.css, including the hero's
+   item cells (.tb__cells, rendered by site.js).
+
+   Loads after site.css. Colours are tokens from notes/visual-design.md
+   section 4 with light fallbacks; this file defines no tokens, so the dark
+   theme comes from site.css. Class prefix: .w0-*.
+   ========================================================================== */
+
+/* ---------- Install: code blocks with a copy button ---------- */
+.w0-code { position: relative; margin-top: 6px; min-width: 0; max-width: 100%; }
+.w0-code pre {
+  margin: 0; padding: 12px 14px; padding-right: 72px;
+  background: var(--page, #F4F4F4); border: 1px solid var(--border, #E5E5E5); border-radius: 6px;
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--text, #0A0A0A);
+  white-space: pre-wrap; overflow-wrap: anywhere; overflow-x: auto; font-variant-ligatures: none;
+}
+/* Two classes, so .card p (15 px body text) does not override the label. */
+.w0-install .w0-code__label {
+  font-family: var(--font-mono); font-size: var(--meta, 12px); line-height: 1.6;
+  color: var(--muted, #6B6B6B); margin-top: 12px;
+}
+.w0-install .h-card + .w0-code__label { margin-top: 4px; }
+.w0-copy {
+  position: absolute; top: 6px; right: 6px;
+  display: inline-flex; align-items: center; min-height: 28px; padding: 3px 10px;
+  border: 1px solid var(--text, #0A0A0A); border-radius: 6px;
+  background: var(--surface, #FFFFFF); color: var(--text, #0A0A0A);
+  font-family: var(--font-display); font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.w0-copy:hover { background: var(--hover-card, #F0F0F0); }
+.w0-install .link-row { margin-top: 12px; }
+.w0-bring { margin-top: 12px; }
+
+@media (max-width: 639.98px) {
+  .w0-code pre { padding-right: 14px; padding-top: 40px; }
+}
+.w0-install__way { margin-top: 18px; }
+.h-card + .w0-install__way { margin-top: 4px; }

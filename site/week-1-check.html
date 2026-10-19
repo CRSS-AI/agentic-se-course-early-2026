@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 1 self-check · Agentic SE Course</title>
+<meta name="description" content="Week 1 self-check: retrieval questions and understanding checks on Week 1 core concepts.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script>
+/* Pre-paint: track, theme and sidebar. site.js does the rest. */
+(function (d, q, t, m, s) {
+  try { q = new URLSearchParams(location.search); } catch (e) {}
+  t = q && q.get("track");
+  if (t !== "codex" && t !== "claude") { try { t = localStorage.getItem("agentic-se-track"); } catch (e) {} }
+  if (!t) { try { t = JSON.parse(localStorage.getItem("agentic-se:v2:progress")).learner.track; } catch (e) {} }
+  if (t === "codex") d.classList.add("track-codex");
+  m = q && q.get("theme");
+  if (m !== "dark" && m !== "light" && m !== "system") { try { m = localStorage.getItem("agentic-se-theme"); } catch (e) {} }
+  if (m === "dark" || m === "light") d.setAttribute("data-theme", m);
+  d.classList.add("has-js");
+  try { s = localStorage.getItem("agentic-se-sidebar"); } catch (e) {}
+  if (s !== "collapsed" && s !== "expanded") { try { s = matchMedia("(min-width: 1280px)").matches ? "expanded" : "collapsed"; } catch (e) { s = "expanded"; } }
+  d.setAttribute("data-sidebar", s);
+})(document.documentElement);
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the questions</a>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a class="topbar__home" href="index.html">Agentic SE Course</a>
+    <div class="topbar__right">
+      <nav class="week-nav" aria-label="Weeks">
+        <span class="week-nav__label" aria-hidden="true">Weeks</span>
+        <ul class="week-nav__list">
+          <li><a class="week-nav__link" href="week-0.html"><span class="sr-only">Week </span>0</a></li>
+          <li><a class="week-nav__link" href="week-1.html" aria-current="true"><span class="sr-only">Week </span>1</a></li>
+          <li><a class="week-nav__link" href="week-2.html"><span class="sr-only">Week </span>2</a></li>
+          <li><a class="week-nav__link" href="week-3.html"><span class="sr-only">Week </span>3</a></li>
+          <li><a class="week-nav__link" href="week-4.html"><span class="sr-only">Week </span>4</a></li>
+          <li><a class="week-nav__link" href="week-5.html"><span class="sr-only">Week </span>5</a></li>
+        </ul>
+      </nav>
+      <a class="topbar__progress" href="progress.html">My progress</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap page fade-in">
+  <div class="week-head">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div>
+        <p class="label week-head__label"><a href="week-1.html">Week 1: One Coding Agent</a></p>
+        <h1 class="week-head__title">Week 1 self-check</h1>
+      </div>
+      <fieldset class="track-switch"
+        data-announce-claude="Showing the Claude Code track."
+        data-announce-codex="Showing the Codex track.">
+        <legend class="track-switch__legend">Track</legend>
+        <div class="track-switch__opts">
+          <input type="radio" name="track" id="track-claude" value="claude" checked>
+          <label for="track-claude">Claude Code</label>
+          <input type="radio" name="track" id="track-codex" value="codex">
+          <label for="track-codex">Codex</label>
+        </div>
+      </fieldset>
+    </div>
+    <p class="lede">Five questions on this week's pre-work. Answer each from memory, then reread only the part you missed.</p>
+    <p class="meta" style="margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px">
+      <span>About 10 minutes</span>
+    </p>
+    <div class="score-card">
+      <p class="label">This try</p>
+      <div data-quiz-score="1"></div>
+      <p class="score-card__key" aria-hidden="true">
+        <span><i class="scorebar__cell is-full"></i>Right</span>
+        <span><i class="scorebar__cell is-half"></i>Half</span>
+        <span><i class="scorebar__cell is-zero"></i>Missed</span>
+        <span><i class="scorebar__cell"></i>Not checked</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Certificates proof section -->
+  <section class="section" id="cert-section" aria-labelledby="certs-h">
+    <div class="card" style="margin-bottom:24px">
+      <h2 class="label" id="certs-h" style="margin-bottom:8px">Your certificates</h2>
+      <p class="lede" style="font-size:1.05rem;margin-bottom:8px">Proof of course completion is required before starting this self-check.</p>
+      <p class="meta" style="margin-bottom:16px">The course owner checks your links and screenshots when you send your progress file.</p>
+      <div id="cert-cards"></div>
+    </div>
+  </section>
+
+  <form class="q-form" id="q-form" data-quiz="1" novalidate>
+    <div class="msg msg--warn" id="quiz-gate-msg" role="status" style="margin-bottom:20px" hidden>
+      <p><strong>Locked</strong> until each course above has proof.</p>
+    </div>
+    <fieldset id="quiz-fieldset" style="border:none;padding:0;margin:0">
+    <ol class="q-list">
+
+      <!-- Q1, Claude Code track: short answer -->
+      <li class="q card" id="q1" data-qid="q1" data-answer="short" data-track="claude">
+        <h2 class="label q__num">Question 1 of 5 · short answer</h2>
+        <label class="q__prompt" for="q1-input">Claude stops when the work looks done. What should you give it so that "looks done" is not its only signal? Name two examples.</label>
+        <textarea id="q1-input" name="q1" rows="3"></textarea>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q1-answer" hidden>
+          <p class="q__verdict" data-verdict>Compare your answer with this one.</p>
+          <p>A check it can run that returns pass or fail, with a result it can read in the conversation: a test suite, a build exit code, a linter, a script that diffs output against a fixture, or a screenshot compared against a design. Claude then does the work, runs the check, reads the result and iterates until the check passes. Without one, you become the verification loop.</p>
+          <p class="q__source">Source: <a href="https://code.claude.com/docs/en/best-practices#give-claude-a-way-to-verify-its-work" target="_blank" rel="noopener noreferrer">Best Practices for Claude Code, "Give Claude a way to verify its work"<span class="sr-only"> (opens in a new tab)</span></a>. Also in Claude Code in Action, on verification.</p>
+        </div>
+      </li>
+
+      <!-- Q1, Codex track: short answer -->
+      <li class="q card" id="cq1" data-qid="cq1" data-answer="short" data-track="codex">
+        <h2 class="label q__num">Question 1 of 5 · short answer</h2>
+        <label class="q__prompt" for="cq1-input">Codex can test, check and review its own change before you accept it. What does it need from you for that to work, and where can you put it?</label>
+        <textarea id="cq1-input" name="cq1" rows="3"></textarea>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="cq1-answer" hidden>
+          <p class="q__verdict" data-verdict>Compare your answer with this one.</p>
+          <p>It needs to know what "good" looks like: which tests to write or update, which suites to run, the lint, formatting or type checks, the behaviour to confirm and what to look for when it reviews the diff. That guidance can come from the prompt, whose "done when" part says what must be true before the task is complete, or from AGENTS.md.</p>
+          <p class="q__source">Source: <a href="https://learn.chatgpt.com/guides/best-practices#improve-reliability-with-testing-and-review" target="_blank" rel="noopener noreferrer">Best practices (OpenAI Codex docs), "Improve reliability with testing and review"<span class="sr-only"> (opens in a new tab)</span></a> and "Strong first use: Context and prompts".</p>
+        </div>
+      </li>
+
+      <!-- Q2, Claude Code track: choice -->
+      <li class="q card" id="q2" data-qid="q2" data-answer="2" data-track="claude">
+        <h2 class="label q__num">Question 2 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">When does the guide suggest skipping plan mode and asking Claude to make the change directly?</legend>
+          <label class="choice"><input type="radio" name="q2" value="0"><span>When the change touches several files</span></label>
+          <label class="choice"><input type="radio" name="q2" value="1"><span>When you are unfamiliar with the code being changed</span></label>
+          <label class="choice"><input type="radio" name="q2" value="2"><span>When you could describe the diff in one sentence</span></label>
+          <label class="choice"><input type="radio" name="q2" value="3"><span>Never: every change should start in plan mode</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q2-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>Planning adds overhead. It pays off when you are unsure of the approach, when the change modifies several files, or when you do not know the code. A typo fix, a log line or a rename can go straight to implementation. The other two options are the cases where the guide recommends planning.</p>
+          <p class="q__source">Source: <a href="https://code.claude.com/docs/en/best-practices#explore-first-then-plan-then-code" target="_blank" rel="noopener noreferrer">Best Practices for Claude Code, "Explore first, then plan, then code"<span class="sr-only"> (opens in a new tab)</span></a>. Also in Claude Code 101, on the Explore, Plan, Code, Commit workflow.</p>
+        </div>
+      </li>
+
+      <!-- Q2, Codex track: choice -->
+      <li class="q card" id="cq2" data-qid="cq2" data-answer="1" data-track="codex">
+        <h2 class="label q__num">Question 2 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">Which of these does the guide list as a common mistake?</legend>
+          <label class="choice"><input type="radio" name="cq2" value="0"><span>Keeping one chat per coherent unit of work</span></label>
+          <label class="choice"><input type="radio" name="cq2" value="1"><span>Skipping planning on multi-step and complex tasks</span></label>
+          <label class="choice"><input type="radio" name="cq2" value="2"><span>Starting with the default permissions</span></label>
+          <label class="choice"><input type="radio" name="cq2" value="3"><span>Moving durable rules out of the prompt into AGENTS.md or a skill</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="cq2-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>When a task is complex, ambiguous or hard to describe well, the guide says to ask Codex to plan before it starts coding, for example in Plan mode (<code>/plan</code> or Shift+Tab), where it gathers context and asks clarifying questions first. The other three options are the guide's own advice: one chat per coherent unit of work, the default permissions while you are new, and durable rules in AGENTS.md or a skill rather than in the prompt.</p>
+          <p class="q__source">Source: <a href="https://learn.chatgpt.com/guides/best-practices#common-mistakes" target="_blank" rel="noopener noreferrer">Best practices (OpenAI Codex docs), "Common mistakes"<span class="sr-only"> (opens in a new tab)</span></a> and "Plan first for difficult tasks".</p>
+        </div>
+      </li>
+
+      <!-- Q3, Claude Code track: choice -->
+      <li class="q card" id="q3" data-qid="q3" data-answer="1" data-track="claude">
+        <h2 class="label q__num">Question 3 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">Which of these belongs in a project's CLAUDE.md?</legend>
+          <label class="choice"><input type="radio" name="q3" value="0"><span>A file-by-file description of the codebase</span></label>
+          <label class="choice"><input type="radio" name="q3" value="1"><span>A Bash command Claude cannot guess, such as how to run a single test</span></label>
+          <label class="choice"><input type="radio" name="q3" value="2"><span>The standard conventions of the language you use</span></label>
+          <label class="choice"><input type="radio" name="q3" value="3"><span>Detailed API documentation for your main library</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q3-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>CLAUDE.md loads in every session, so it holds what Claude cannot infer from the code: commands it cannot guess, style rules that differ from the defaults, test instructions, repository etiquette and environment quirks. For each line, ask whether removing it would cause Claude to make mistakes; if not, cut it. The other three options are on the guide's list of things to leave out.</p>
+          <p class="q__source">Source: <a href="https://code.claude.com/docs/en/best-practices#write-an-effective-claude-md" target="_blank" rel="noopener noreferrer">Best Practices for Claude Code, "Write an effective CLAUDE.md"<span class="sr-only"> (opens in a new tab)</span></a>. Also in Claude Code in Action, on keeping CLAUDE.md lean.</p>
+        </div>
+      </li>
+
+      <!-- Q3, Codex track: choice -->
+      <li class="q card" id="cq3" data-qid="cq3" data-answer="3" data-track="codex">
+        <h2 class="label q__num">Question 3 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">Which of these belongs in a repository's AGENTS.md?</legend>
+          <label class="choice"><input type="radio" name="cq3" value="0"><span>Every rule you can think of, written up front so Codex never has to guess</span></label>
+          <label class="choice"><input type="radio" name="cq3" value="1"><span>The full text of your planning, code review and architecture guides</span></label>
+          <label class="choice"><input type="radio" name="cq3" value="2"><span>Data that changes often, such as the current state of your issue tracker</span></label>
+          <label class="choice"><input type="radio" name="cq3" value="3"><span>Build, test and lint commands, and how to verify that work is done</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="cq3-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>A good AGENTS.md covers the repository layout, how to run the project, build, test and lint commands, conventions and PR expectations, do-not rules, and what done means and how to verify work. Keep it short and accurate: add rules only after you notice repeated mistakes, point to separate files for planning, code review or architecture, and use MCP for context that lives outside the repository and changes often.</p>
+          <p class="q__source">Source: <a href="https://learn.chatgpt.com/guides/best-practices#make-guidance-reusable-with-agentsmd" target="_blank" rel="noopener noreferrer">Best practices (OpenAI Codex docs), "Make guidance reusable with AGENTS.md"<span class="sr-only"> (opens in a new tab)</span></a> and "Use MCPs for external context".</p>
+        </div>
+      </li>
+
+      <!-- Q4, Claude Code track: short answer -->
+      <li class="q card" id="q4" data-qid="q4" data-answer="short" data-track="claude">
+        <h2 class="label q__num">Question 4 of 5 · short answer</h2>
+        <label class="q__prompt" for="q4-input">You have corrected Claude twice on the same issue and it is still wrong. What does the guide recommend, and why?</label>
+        <textarea id="q4-input" name="q4" rows="3"></textarea>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q4-answer" hidden>
+          <p class="q__verdict" data-verdict>Compare your answer with this one.</p>
+          <p>Run <code>/clear</code> and start again with a more specific prompt that uses what you learned. After repeated corrections the context is cluttered with failed approaches, and a clean session with a better prompt almost always outperforms a long session with accumulated corrections. <code>/clear</code> resets the context window entirely; <code>/compact</code> keeps a summary of what matters.</p>
+          <p class="q__source">Source: <a href="https://code.claude.com/docs/en/best-practices#course-correct-early-and-often" target="_blank" rel="noopener noreferrer">Best Practices for Claude Code, "Course-correct early and often"<span class="sr-only"> (opens in a new tab)</span></a> and "Avoid common failure patterns". Also in Claude Code 101, on <code>/compact</code>, <code>/clear</code> and <code>/context</code>.</p>
+        </div>
+      </li>
+
+      <!-- Q4, Codex track: short answer -->
+      <li class="q card" id="cq4" data-qid="cq4" data-answer="short" data-track="codex">
+        <h2 class="label q__num">Question 4 of 5 · short answer</h2>
+        <label class="q__prompt" for="cq4-input">Codex has made the same mistake twice. What does the guide suggest you do, and why does it help?</label>
+        <textarea id="cq4-input" name="cq4" rows="3"></textarea>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="cq4-answer" hidden>
+          <p class="q__verdict" data-verdict>Compare your answer with this one.</p>
+          <p>Ask Codex for a retrospective, then update AGENTS.md with what it found. Codex reads AGENTS.md before doing any work, so the correction carries into later tasks, and rules added this way stay practical because they come from real friction rather than guesses made up front.</p>
+          <p class="q__source">Source: <a href="https://learn.chatgpt.com/guides/best-practices#make-guidance-reusable-with-agentsmd" target="_blank" rel="noopener noreferrer">Best practices (OpenAI Codex docs), "Make guidance reusable with AGENTS.md"<span class="sr-only"> (opens in a new tab)</span></a>. Also in <a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md" target="_blank" rel="noopener noreferrer">Custom instructions with AGENTS.md (OpenAI Codex docs)<span class="sr-only"> (opens in a new tab)</span></a>, opening paragraph.</p>
+        </div>
+      </li>
+
+      <!-- Q5, Claude Code track: choice -->
+      <li class="q card" id="q5" data-qid="q5" data-answer="1" data-track="claude">
+        <h2 class="label q__num">Question 5 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">In Manual permission mode, which actions does Claude Code ask you to approve?</legend>
+          <label class="choice"><input type="radio" name="q5" value="0"><span>Only git commits and pushes</span></label>
+          <label class="choice"><input type="radio" name="q5" value="1"><span>Actions that might modify your system: file writes, Bash commands and MCP tools</span></label>
+          <label class="choice"><input type="radio" name="q5" value="2"><span>Every action, including reading files</span></label>
+          <label class="choice"><input type="radio" name="q5" value="3"><span>None: a classifier model reviews each action instead of you</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="q5-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>Manual mode asks before actions that might modify your system. The last option describes auto mode, where a separate classifier model reviews most actions and blocks only what looks risky. Permission allowlists and sandboxing cut the number of prompts in either mode.</p>
+          <p class="q__source">Source: <a href="https://code.claude.com/docs/en/best-practices#configure-permissions" target="_blank" rel="noopener noreferrer">Best Practices for Claude Code, "Configure permissions"<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+        </div>
+      </li>
+
+      <!-- Q5, Codex track: choice -->
+      <li class="q card" id="cq5" data-qid="cq5" data-answer="2" data-track="codex">
+        <h2 class="label q__num">Question 5 of 5 · choice</h2>
+        <fieldset class="q__choices">
+          <legend class="q__prompt">Codex has two permission settings, approval mode and sandbox mode. What does sandbox mode determine?</legend>
+          <label class="choice"><input type="radio" name="cq5" value="0"><span>When Codex asks for your permission to run a command</span></label>
+          <label class="choice"><input type="radio" name="cq5" value="1"><span>Which model and reasoning effort Codex uses</span></label>
+          <label class="choice"><input type="radio" name="cq5" value="2"><span>Whether Codex can read or write in the directory, and which files it can access</span></label>
+          <label class="choice"><input type="radio" name="cq5" value="3"><span>Which MCP servers Codex can connect to</span></label>
+        </fieldset>
+        <div data-quiz-controls></div>
+        <div class="q__answer" id="cq5-answer" hidden>
+          <p class="q__verdict" data-verdict></p>
+          <p>Sandbox mode sets whether Codex can read or write in the directory and which files it can access; approval mode decides when it asks for your permission to run a command. Model, reasoning effort and MCP servers are separate settings in the same configuration. If you are new to coding agents, start with the default permissions and loosen them only for trusted repositories or specific workflows.</p>
+          <p class="q__source">Source: <a href="https://learn.chatgpt.com/guides/best-practices#configure-codex-for-consistency" target="_blank" rel="noopener noreferrer">Best practices (OpenAI Codex docs), "Configure Codex for consistency"<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+        </div>
+      </li>
+    </ol>
+    </fieldset>
+
+    <section class="score-card quiz-end" data-quiz-end="1" aria-label="Your result" hidden></section>
+
+    <div class="q__actions" style="margin-top:24px">
+      <button type="button" class="btn-text" data-quiz-restart="abandon" hidden>Clear my answers and start again</button>
+      <a class="link-row" href="week-1.html#live-h" style="min-height:32px">
+        <span class="link-row__text"><span class="link-row__verb">Back to</span> <span class="link-row__title">Week 1, live session</span></span>
+        <svg class="arrow arrow--int" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M1 6H11M11 6L6.5 1.5M11 6L6.5 10.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <nav aria-label="More">
+      <ul class="site-footer__links">
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="further-reading.html">Further Reading</a></li>
+        <li><a href="references.bib">BibTeX</a></li>
+        <li><a href="facilitator.html">Facilitator</a></li>
+        <li><a href="progress.html">My progress</a></li>
+        <li><a href="v1/">Previous version</a></li>
+      </ul>
+    </nav>
+    <p class="meta">Agentic SE Course · v2, October 2026</p>
+  </div>
+</footer>
+
+<div class="sr-only" aria-live="polite" data-track-live></div>
+
+<script src="progress.js"></script>
+<script src="site.js"></script>
+<script>
+(function () {
+  "use strict";
+  var P = window.AgenticProgress, S = window.AgenticSite;
+  if (!P || !S) return;
+
+  var WEEK = 1;
+  var REQS = {
+    claude: [
+      { id: "claude-code-101", title: "Claude Code 101", platform: "Claude Academy", defaultUrl: "https://academy.claude.com/courses/claude-code-101/badge" },
+      { id: "claude-code-in-action", title: "Claude Code in Action", platform: "Claude Academy", defaultUrl: "https://academy.claude.com/courses/claude-code-in-action/badge" }
+    ],
+    codex: [
+      { id: "codex-get-started", title: "Get Started with Codex", platform: "OpenAI Academy", hint: "Digital badge link from Accredible email" },
+      { id: "codex-extend", title: "Extend Codex Workflows", platform: "OpenAI Academy", hint: "Digital badge link from Accredible email" }
+    ]
+  };
+
+  var pendingImages = {};
+
+  function processImage(file, cb) {
+    if (!file || !file.type.match(/^image\//)) { cb(null, "Please choose an image file."); return; }
+    var reader = new FileReader();
+    reader.onerror = function () { cb(null, "Could not read file."); };
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onerror = function () { cb(null, "Could not load image."); };
+      img.onload = function () {
+        var max = 1000, w = img.width, h = img.height;
+        if (w > max || h > max) {
+          if (w > h) { h = Math.round((h * max) / w); w = max; }
+          else { w = Math.round((w * max) / h); h = max; }
+        }
+        var canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+        cb(canvas.toDataURL("image/jpeg", 0.7), null);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function renderCertCards() {
+    var track = S.track();
+    var list = REQS[track] || [];
+    var certs = P.getCertificates();
+    var container = document.getElementById("cert-cards");
+    if (!container) return;
+
+    var html = list.map(function (req) {
+      var key = "w" + WEEK + ":" + req.id;
+      var c = certs[key];
+      var isSaved = c && (c.url || c.image);
+
+      if (isSaved) {
+        var proofHTML = "";
+        if (c.url) proofHTML += '<p class="meta" style="margin:4px 0"><strong>URL:</strong> <a href="' + S.esc(c.url) + '" target="_blank" rel="noopener noreferrer">' + S.esc(c.url) + '<span class="sr-only"> (opens in a new tab)</span></a></p>';
+        if (c.image) proofHTML += '<div style="margin:6px 0"><p class="meta" style="margin:0 0 4px"><strong>Screenshot:</strong></p><img src="' + S.esc(c.image) + '" alt="Screenshot proof for ' + S.esc(req.title) + '" style="max-height:80px;border-radius:4px;border:1px solid var(--border)"></div>';
+        if (c.earnedOn) proofHTML += '<p class="meta" style="margin:4px 0"><strong>Earned on:</strong> ' + S.esc(c.earnedOn) + '</p>';
+
+        return '<div class="card" style="margin-bottom:12px;background:var(--surface)">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">' +
+            '<div><h3 class="h-card" style="margin:0">' + S.esc(req.title) + '</h3><span class="meta">' + S.esc(req.platform) + '</span></div>' +
+            '<span class="tag tag--core">Proof saved</span>' +
+          '</div>' +
+          proofHTML +
+          '<div style="margin-top:10px">' +
+            '<button type="button" class="btn btn--small" data-remove-trigger="' + req.id + '">Remove</button>' +
+            '<div id="confirm-' + req.id + '" hidden style="margin-top:8px;padding:8px 12px;background:var(--page);border:1px solid var(--border);border-radius:4px">' +
+              '<p class="meta" style="margin:0 0 8px">Are you sure you want to remove this proof?</p>' +
+              '<div class="btn-row">' +
+                '<button type="button" class="btn btn--small btn--primary" data-confirm-yes="' + req.id + '">Yes, remove</button>' +
+                '<button type="button" class="btn btn--small" data-confirm-no="' + req.id + '">Cancel</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }
+
+      var hintText = req.defaultUrl ? 'For example: ' + req.defaultUrl : req.hint ? req.hint : 'HTTPS link';
+      return '<div class="card" style="margin-bottom:12px;background:var(--surface)">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">' +
+          '<div><h3 class="h-card" style="margin:0">' + S.esc(req.title) + '</h3><span class="meta">' + S.esc(req.platform) + '</span></div>' +
+          '<span class="tag tag--draft">Proof required</span>' +
+        '</div>' +
+        '<div style="display:grid;gap:8px;margin-top:8px">' +
+          '<div>' +
+            '<label class="field-label" for="url-' + req.id + '">Badge link or credential URL</label>' +
+            '<input type="url" class="field field--wide" id="url-' + req.id + '" placeholder="https://..." style="margin-bottom:2px">' +
+            '<p class="field-hint" style="margin:0 0 6px">' + S.esc(hintText) + '</p>' +
+          '</div>' +
+          '<div>' +
+            '<label class="field-label" for="file-' + req.id + '">Or upload badge screenshot</label>' +
+            '<input type="file" class="field" id="file-' + req.id + '" accept="image/*" style="margin-bottom:2px">' +
+            '<div id="preview-' + req.id + '" style="margin-top:4px"></div>' +
+          '</div>' +
+          '<div>' +
+            '<label class="field-label" for="date-' + req.id + '">Date earned (optional)</label>' +
+            '<input type="date" class="field" id="date-' + req.id + '" style="max-width:200px">' +
+          '</div>' +
+          '<div id="msg-' + req.id + '" role="alert"></div>' +
+          '<div>' +
+            '<button type="button" class="btn btn--primary btn--small" data-save="' + req.id + '">Save proof</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+
+    container.innerHTML = html;
+    bindEvents();
+    updateGating();
+  }
+
+  function bindEvents() {
+    var container = document.getElementById("cert-cards");
+    if (!container) return;
+
+    var track = S.track();
+    var list = REQS[track] || [];
+
+    list.forEach(function (req) {
+      var fileInput = document.getElementById("file-" + req.id);
+      if (fileInput) {
+        fileInput.addEventListener("change", function () {
+          var file = fileInput.files && fileInput.files[0];
+          var prev = document.getElementById("preview-" + req.id);
+          if (!file) { pendingImages[req.id] = null; if (prev) prev.innerHTML = ""; return; }
+          processImage(file, function (dataUrl, err) {
+            if (err) {
+              if (prev) prev.innerHTML = '<span class="meta" style="color:var(--orange)">' + S.esc(err) + '</span>';
+              pendingImages[req.id] = null;
+            } else {
+              pendingImages[req.id] = dataUrl;
+              if (prev) prev.innerHTML = '<img src="' + dataUrl + '" alt="Screenshot preview" style="max-height:60px;border-radius:4px;border:1px solid var(--border)">';
+            }
+          });
+        });
+      }
+
+      var saveBtn = container.querySelector('[data-save="' + req.id + '"]');
+      if (saveBtn) {
+        saveBtn.addEventListener("click", function () {
+          var urlInput = document.getElementById("url-" + req.id);
+          var dateInput = document.getElementById("date-" + req.id);
+          var msgBox = document.getElementById("msg-" + req.id);
+          var url = urlInput ? urlInput.value.trim() : "";
+          var date = dateInput ? dateInput.value : "";
+          var image = pendingImages[req.id] || null;
+
+          var res = P.setCertificate(WEEK, req.id, {
+            course: req.title,
+            platform: req.platform,
+            url: url || null,
+            image: image,
+            earnedOn: date || null
+          });
+
+          if (!res.ok) {
+            if (msgBox) msgBox.innerHTML = '<p class="msg msg--error" style="margin-top:6px">' + res.errors.map(S.esc).join("<br>") + '</p>';
+          } else {
+            pendingImages[req.id] = null;
+            renderCertCards();
+            S.announce("Saved certificate proof for " + req.title + ".");
+          }
+        });
+      }
+
+      var removeTrigger = container.querySelector('[data-remove-trigger="' + req.id + '"]');
+      if (removeTrigger) {
+        removeTrigger.addEventListener("click", function () {
+          var confirmBox = document.getElementById("confirm-" + req.id);
+          if (confirmBox) confirmBox.hidden = false;
+        });
+      }
+
+      var confirmYes = container.querySelector('[data-confirm-yes="' + req.id + '"]');
+      if (confirmYes) {
+        confirmYes.addEventListener("click", function () {
+          P.removeCertificate(WEEK, req.id);
+          renderCertCards();
+          S.announce("Removed certificate proof for " + req.title + ".");
+        });
+      }
+
+      var confirmNo = container.querySelector('[data-confirm-no="' + req.id + '"]');
+      if (confirmNo) {
+        confirmNo.addEventListener("click", function () {
+          var confirmBox = document.getElementById("confirm-" + req.id);
+          if (confirmBox) confirmBox.hidden = true;
+        });
+      }
+    });
+  }
+
+  function updateGating() {
+    var track = S.track();
+    var list = REQS[track] || [];
+    var certs = P.getCertificates();
+    var allSatisfied = list.every(function (req) {
+      var c = certs["w" + WEEK + ":" + req.id];
+      return c && (c.url || c.image);
+    });
+
+    var gateMsg = document.getElementById("quiz-gate-msg");
+    var quizFieldset = document.getElementById("quiz-fieldset");
+
+    if (gateMsg) gateMsg.hidden = allSatisfied;
+    if (quizFieldset) quizFieldset.disabled = !allSatisfied;
+  }
+
+  S.onRender(function () {
+    renderCertCards();
+  });
+})();
+</script>
+</body>
+</html>

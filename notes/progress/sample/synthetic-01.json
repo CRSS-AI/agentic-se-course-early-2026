@@ -1,0 +1,842 @@
+{
+  "schema": "agentic-se-progress",
+  "schemaVersion": 1,
+  "exportedAt": "2026-09-17T02:35:32.916Z",
+  "appVersion": "mockup-2026-10-SYNTHETIC",
+  "userAgentFamily": "chrome",
+  "learner": {
+    "id": "L-synthetic-01",
+    "alias": "SYNTHETIC-01",
+    "cohort": "early-2026",
+    "track": "claude",
+    "createdAt": "2026-09-14T08:00:00.000Z"
+  },
+  "items": {
+    "w1:pw-1": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-14T17:18:52.422Z",
+      "minutesSpent": 28,
+      "estimateMinutes": 20
+    },
+    "w1:pw-2": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-14T19:12:59.975Z",
+      "minutesSpent": 64,
+      "estimateMinutes": 35
+    },
+    "w1:pw-4": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-15T04:36:40.857Z",
+      "minutesSpent": 33,
+      "estimateMinutes": 25
+    },
+    "w1:pw-5": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-15T10:36:43.934Z",
+      "minutesSpent": 28,
+      "estimateMinutes": 30
+    },
+    "w1:pw-6": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-15T19:19:37.970Z",
+      "minutesSpent": 12,
+      "estimateMinutes": 15
+    },
+    "w3:pw-1": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-16T00:29:47.172Z",
+      "minutesSpent": 27,
+      "estimateMinutes": 40
+    },
+    "w3:pw-2": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-16T06:22:09.568Z",
+      "minutesSpent": 50,
+      "estimateMinutes": 30
+    },
+    "w3:pw-3": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-16T13:40:42.618Z",
+      "minutesSpent": 49,
+      "estimateMinutes": 45
+    },
+    "w3:act": {
+      "status": "done",
+      "track": "claude",
+      "doneAt": "2026-09-16T21:08:32.916Z",
+      "minutesSpent": 91,
+      "estimateMinutes": 60
+    }
+  },
+  "quizzes": {
+    "w1": [
+      {
+        "attemptId": "A-bc85f5f71505e249",
+        "startedAt": "2026-09-16T22:08:32.916Z",
+        "submittedAt": "2026-09-16T22:13:32.916Z",
+        "answers": [
+          {
+            "qid": "q1",
+            "type": "short",
+            "response": "synthetic answer",
+            "confidence": 3,
+            "revealedAt": "2026-09-16T22:09:32.916Z",
+            "selfScore": 1
+          },
+          {
+            "qid": "q2",
+            "type": "mcq",
+            "response": 2,
+            "confidence": 2,
+            "revealedAt": "2026-09-16T22:10:32.916Z",
+            "correct": true
+          },
+          {
+            "qid": "q3",
+            "type": "mcq",
+            "response": 1,
+            "confidence": 2,
+            "revealedAt": "2026-09-16T22:11:32.916Z",
+            "correct": true
+          },
+          {
+            "qid": "q4",
+            "type": "short",
+            "response": "synthetic answer",
+            "confidence": 2,
+            "revealedAt": "2026-09-16T22:12:32.916Z",
+            "selfScore": 0
+          },
+          {
+            "qid": "q5",
+            "type": "mcq",
+            "response": 1,
+            "confidence": 2,
+            "revealedAt": "2026-09-16T22:13:32.916Z",
+            "correct": true
+          }
+        ],
+        "score": {
+          "auto": 3,
+          "autoMax": 3,
+          "self": 1,
+          "selfMax": 4
+        },
+        "track": "claude"
+      },
+      {
+        "attemptId": "A-5485e76e18b39b3f",
+        "startedAt": "2026-09-16T23:13:32.916Z",
+        "submittedAt": "2026-09-16T23:18:32.916Z",
+        "answers": [
+          {
+            "qid": "q1",
+            "type": "short",
+            "response": "synthetic answer",
+            "confidence": 2,
+            "revealedAt": "2026-09-16T23:14:32.916Z",
+            "selfScore": 2
+          },
+          {
+            "qid": "q2",
+            "type": "mcq",
+            "response": 2,
+            "confidence": 3,
+            "revealedAt": "2026-09-16T23:15:32.916Z",
+            "correct": true
+          },
+          {
+            "qid": "q3",
+            "type": "mcq",
+            "response": 2,
+            "confidence": 3,
+            "revealedAt": "2026-09-16T23:16:32.916Z",
+            "correct": false
+          },
+          {
+            "qid": "q4",
+            "type": "short",
+            "response": "synthetic answer",
+            "confidence": 4,
+            "revealedAt": "2026-09-16T23:17:32.916Z",
+            "selfScore": 2
+          },
+          {
+            "qid": "q5",
+            "type": "mcq",
+            "response": 1,
+            "confidence": 3,
+            "revealedAt": "2026-09-16T23:18:32.916Z",
+            "correct": true
+          }
+        ],
+        "score": {
+          "auto": 2,
+          "autoMax": 3,
+          "self": 4,
+          "selfMax": 4
+        },
+        "track": "claude"
+      }
+    ]
+  },
+  "estimates": [
+    {
+      "taskId": "bm-01",
+      "estimateMinutes": 39,
+      "complexity": 1,
+      "specQuality": 3,
+      "reason": "synthetic",
+      "pairId": "pair-bm-01",
+      "agentAttempts": null,
+      "agentPassPredicted": null,
+      "submittedAt": "2026-09-14T08:03:00.000Z",
+      "revealedAt": "2026-09-14T08:03:00.000Z"
+    },
+    {
+      "taskId": "bm-02",
+      "estimateMinutes": 100,
+      "complexity": 2,
+      "specQuality": 1,
+      "reason": "synthetic",
+      "pairId": "pair-bm-02",
+      "agentAttempts": null,
+      "agentPassPredicted": null,
+      "submittedAt": "2026-09-14T08:06:00.000Z",
+      "revealedAt": "2026-09-14T08:06:00.000Z"
+    },
+    {
+      "taskId": "bm-03",
+      "estimateMinutes": 275,
+      "complexity": 1,
+      "specQuality": 5,
+      "reason": "synthetic",
+      "pairId": "pair-bm-03",
+      "agentAttempts": null,
+      "agentPassPredicted": null,
+      "submittedAt": "2026-09-14T08:09:00.000Z",
+      "revealedAt": "2026-09-14T08:09:00.000Z"
+    },
+    {
+      "taskId": "bm-04",
+      "estimateMinutes": 74,
+      "complexity": 5,
+      "specQuality": 3,
+      "reason": "synthetic",
+      "pairId": "pair-bm-04",
+      "agentAttempts": null,
+      "agentPassPredicted": null,
+      "submittedAt": "2026-09-14T08:12:00.000Z",
+      "revealedAt": "2026-09-14T08:12:00.000Z"
+    },
+    {
+      "taskId": "swev-flask-blueprint-name",
+      "estimateMinutes": 8,
+      "complexity": 2,
+      "specQuality": 2,
+      "reason": "synthetic",
+      "pairId": "pair-synthetic-1",
+      "agentAttempts": 15,
+      "agentPassPredicted": 1,
+      "submittedAt": "2026-09-17T02:17:32.916Z",
+      "revealedAt": "2026-09-17T02:17:32.916Z"
+    },
+    {
+      "taskId": "tb4-archive-clone",
+      "estimateMinutes": 1314,
+      "complexity": 5,
+      "specQuality": 1,
+      "reason": "synthetic",
+      "pairId": "pair-synthetic-1",
+      "agentAttempts": 10,
+      "agentPassPredicted": 7,
+      "submittedAt": "2026-09-17T02:21:32.916Z",
+      "revealedAt": "2026-09-17T02:21:32.916Z"
+    },
+    {
+      "taskId": "pro-flipt-skip-existing",
+      "estimateMinutes": 84,
+      "complexity": 2,
+      "specQuality": 4,
+      "reason": "synthetic",
+      "pairId": "pair-synthetic-1",
+      "agentAttempts": null,
+      "agentPassPredicted": null,
+      "submittedAt": "2026-09-17T02:25:32.916Z",
+      "revealedAt": "2026-09-17T02:25:32.916Z"
+    }
+  ],
+  "deliverables": {
+    "w3": {
+      "url": "https://example.invalid/synthetic",
+      "note": "synthetic",
+      "submittedAt": "2026-09-16T23:18:32.916Z",
+      "rubricSelf": {
+        "r1": "secure",
+        "r2": "secure"
+      }
+    }
+  },
+  "events": [
+    {
+      "t": "2026-09-14T08:00:00.000Z",
+      "type": "track",
+      "ref": "claude"
+    },
+    {
+      "t": "2026-09-14T08:00:00.000Z",
+      "type": "alias",
+      "ref": ""
+    },
+    {
+      "t": "2026-09-14T08:03:00.000Z",
+      "type": "estimate:add",
+      "ref": "bm-01"
+    },
+    {
+      "t": "2026-09-14T08:03:00.000Z",
+      "type": "estimate:reveal",
+      "ref": "bm-01"
+    },
+    {
+      "t": "2026-09-14T08:06:00.000Z",
+      "type": "estimate:add",
+      "ref": "bm-02"
+    },
+    {
+      "t": "2026-09-14T08:06:00.000Z",
+      "type": "estimate:reveal",
+      "ref": "bm-02"
+    },
+    {
+      "t": "2026-09-14T08:09:00.000Z",
+      "type": "estimate:add",
+      "ref": "bm-03"
+    },
+    {
+      "t": "2026-09-14T08:09:00.000Z",
+      "type": "estimate:reveal",
+      "ref": "bm-03"
+    },
+    {
+      "t": "2026-09-14T08:12:00.000Z",
+      "type": "estimate:add",
+      "ref": "bm-04"
+    },
+    {
+      "t": "2026-09-14T08:12:00.000Z",
+      "type": "estimate:reveal",
+      "ref": "bm-04"
+    },
+    {
+      "t": "2026-09-14T17:18:52.422Z",
+      "type": "item:done",
+      "ref": "w1:pw-1"
+    },
+    {
+      "t": "2026-09-14T19:12:59.975Z",
+      "type": "item:done",
+      "ref": "w1:pw-2"
+    },
+    {
+      "t": "2026-09-15T04:36:40.857Z",
+      "type": "item:done",
+      "ref": "w1:pw-4"
+    },
+    {
+      "t": "2026-09-15T10:36:43.934Z",
+      "type": "item:done",
+      "ref": "w1:pw-5"
+    },
+    {
+      "t": "2026-09-15T19:19:37.970Z",
+      "type": "item:done",
+      "ref": "w1:pw-6"
+    },
+    {
+      "t": "2026-09-16T00:29:47.172Z",
+      "type": "item:done",
+      "ref": "w3:pw-1"
+    },
+    {
+      "t": "2026-09-16T06:22:09.568Z",
+      "type": "item:done",
+      "ref": "w3:pw-2"
+    },
+    {
+      "t": "2026-09-16T13:40:42.618Z",
+      "type": "item:done",
+      "ref": "w3:pw-3"
+    },
+    {
+      "t": "2026-09-16T21:08:32.916Z",
+      "type": "item:done",
+      "ref": "w3:act"
+    },
+    {
+      "t": "2026-09-16T22:08:32.916Z",
+      "type": "quiz:start",
+      "ref": "w1"
+    },
+    {
+      "t": "2026-09-16T22:09:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q1"
+    },
+    {
+      "t": "2026-09-16T22:09:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q1"
+    },
+    {
+      "t": "2026-09-16T22:10:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q2"
+    },
+    {
+      "t": "2026-09-16T22:11:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q3"
+    },
+    {
+      "t": "2026-09-16T22:12:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q4"
+    },
+    {
+      "t": "2026-09-16T22:12:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q4"
+    },
+    {
+      "t": "2026-09-16T22:13:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q5"
+    },
+    {
+      "t": "2026-09-16T22:13:32.916Z",
+      "type": "quiz:submit",
+      "ref": "w1"
+    },
+    {
+      "t": "2026-09-16T23:13:32.916Z",
+      "type": "quiz:start",
+      "ref": "w1"
+    },
+    {
+      "t": "2026-09-16T23:14:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q1"
+    },
+    {
+      "t": "2026-09-16T23:14:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q1"
+    },
+    {
+      "t": "2026-09-16T23:15:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q2"
+    },
+    {
+      "t": "2026-09-16T23:16:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q3"
+    },
+    {
+      "t": "2026-09-16T23:17:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q4"
+    },
+    {
+      "t": "2026-09-16T23:17:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q4"
+    },
+    {
+      "t": "2026-09-16T23:18:32.916Z",
+      "type": "quiz:answer",
+      "ref": "w1:q5"
+    },
+    {
+      "t": "2026-09-16T23:18:32.916Z",
+      "type": "quiz:submit",
+      "ref": "w1"
+    },
+    {
+      "t": "2026-09-16T23:18:32.916Z",
+      "type": "deliverable",
+      "ref": "w3"
+    },
+    {
+      "t": "2026-09-16T23:23:32.916Z",
+      "type": "certificate:set",
+      "ref": "w1:claude-code-101"
+    },
+    {
+      "t": "2026-09-16T23:28:32.916Z",
+      "type": "certificate:set",
+      "ref": "w1:claude-code-in-action"
+    },
+    {
+      "t": "2026-09-16T23:33:32.916Z",
+      "type": "outcome:check",
+      "ref": "w1:o1"
+    },
+    {
+      "t": "2026-09-16T23:38:32.916Z",
+      "type": "outcome:check",
+      "ref": "w1:o3"
+    },
+    {
+      "t": "2026-09-16T23:43:32.916Z",
+      "type": "outcome:uncheck",
+      "ref": "w1:o4"
+    },
+    {
+      "t": "2026-09-16T23:48:32.916Z",
+      "type": "outcome:check",
+      "ref": "w3:o2"
+    },
+    {
+      "t": "2026-09-16T23:53:32.916Z",
+      "type": "outcome:check",
+      "ref": "w3:o3"
+    },
+    {
+      "t": "2026-09-17T00:01:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-b30ace2727af02ea"
+    },
+    {
+      "t": "2026-09-17T00:09:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-883b8868a30be525"
+    },
+    {
+      "t": "2026-09-17T00:17:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-053c21bb7fea2a94"
+    },
+    {
+      "t": "2026-09-17T00:25:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-7ed662c5b499991f"
+    },
+    {
+      "t": "2026-09-17T00:33:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-219293b1ca535e9d"
+    },
+    {
+      "t": "2026-09-17T00:41:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-173fd8f416b2d0ab"
+    },
+    {
+      "t": "2026-09-17T00:49:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-3e59efae8bc43cf7"
+    },
+    {
+      "t": "2026-09-17T00:57:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-7b6b22eff96f6641"
+    },
+    {
+      "t": "2026-09-17T01:05:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-c0790a4c3684c6bd"
+    },
+    {
+      "t": "2026-09-17T01:13:32.916Z",
+      "type": "stage:add",
+      "ref": "w3:S-614b909a37a85959"
+    },
+    {
+      "t": "2026-09-17T01:33:32.916Z",
+      "type": "stage:add",
+      "ref": "w5:S-4ca256b7619e37c6"
+    },
+    {
+      "t": "2026-09-17T01:53:32.916Z",
+      "type": "stage:add",
+      "ref": "w5:S-4b23056056dccadf"
+    },
+    {
+      "t": "2026-09-17T02:13:32.916Z",
+      "type": "stage:add",
+      "ref": "w5:S-16beb79b2284e0dc"
+    },
+    {
+      "t": "2026-09-17T02:17:32.916Z",
+      "type": "estimate:add",
+      "ref": "swev-flask-blueprint-name"
+    },
+    {
+      "t": "2026-09-17T02:17:32.916Z",
+      "type": "estimate:reveal",
+      "ref": "swev-flask-blueprint-name"
+    },
+    {
+      "t": "2026-09-17T02:21:32.916Z",
+      "type": "estimate:add",
+      "ref": "tb4-archive-clone"
+    },
+    {
+      "t": "2026-09-17T02:21:32.916Z",
+      "type": "estimate:reveal",
+      "ref": "tb4-archive-clone"
+    },
+    {
+      "t": "2026-09-17T02:25:32.916Z",
+      "type": "estimate:add",
+      "ref": "pro-flipt-skip-existing"
+    },
+    {
+      "t": "2026-09-17T02:25:32.916Z",
+      "type": "estimate:reveal",
+      "ref": "pro-flipt-skip-existing"
+    }
+  ],
+  "outcomes": {
+    "w1": {
+      "o1": {
+        "checked": true,
+        "at": "2026-09-16T23:33:32.916Z"
+      },
+      "o3": {
+        "checked": true,
+        "at": "2026-09-16T23:38:32.916Z"
+      },
+      "o4": {
+        "checked": false,
+        "at": "2026-09-16T23:43:32.916Z"
+      }
+    },
+    "w3": {
+      "o2": {
+        "checked": true,
+        "at": "2026-09-16T23:48:32.916Z"
+      },
+      "o3": {
+        "checked": true,
+        "at": "2026-09-16T23:53:32.916Z"
+      }
+    }
+  },
+  "stageLogs": {
+    "w3": [
+      {
+        "id": "S-b30ace2727af02ea",
+        "change": "issue 4",
+        "stage": "triage",
+        "humanMinutes": 9,
+        "tokens": 55813,
+        "costUsd": 0.51,
+        "contextGiven": "synthetic context",
+        "intervention": "synthetic correction",
+        "cause": "taste",
+        "judgement": "synthetic judgement",
+        "failed": false,
+        "at": "2026-09-17T00:01:32.916Z"
+      },
+      {
+        "id": "S-883b8868a30be525",
+        "change": "issue 4",
+        "stage": "spec",
+        "humanMinutes": 19,
+        "tokens": 77968,
+        "costUsd": 0.8,
+        "contextGiven": "synthetic context",
+        "intervention": "",
+        "cause": "none",
+        "judgement": "",
+        "failed": false,
+        "at": "2026-09-17T00:09:32.916Z"
+      },
+      {
+        "id": "S-053c21bb7fea2a94",
+        "change": "issue 4",
+        "stage": "implement",
+        "humanMinutes": 16,
+        "tokens": 40622,
+        "costUsd": 0.53,
+        "contextGiven": "synthetic context",
+        "intervention": "synthetic correction",
+        "cause": "wrong-design",
+        "judgement": "synthetic judgement",
+        "failed": false,
+        "at": "2026-09-17T00:17:32.916Z"
+      },
+      {
+        "id": "S-7ed662c5b499991f",
+        "change": "issue 4",
+        "stage": "review",
+        "humanMinutes": 18,
+        "tokens": 40230,
+        "costUsd": 0.26,
+        "contextGiven": "synthetic context",
+        "intervention": "synthetic correction",
+        "cause": "taste",
+        "judgement": "synthetic judgement",
+        "failed": false,
+        "at": "2026-09-17T00:25:32.916Z"
+      },
+      {
+        "id": "S-219293b1ca535e9d",
+        "change": "issue 4",
+        "stage": "pr",
+        "humanMinutes": 4,
+        "tokens": 48930,
+        "costUsd": 0.51,
+        "contextGiven": "synthetic context",
+        "intervention": "",
+        "cause": "none",
+        "judgement": "",
+        "failed": false,
+        "at": "2026-09-17T00:33:32.916Z"
+      },
+      {
+        "id": "S-173fd8f416b2d0ab",
+        "change": "issue 7",
+        "stage": "triage",
+        "humanMinutes": 7,
+        "tokens": 77555,
+        "costUsd": 0.18,
+        "contextGiven": "synthetic context",
+        "intervention": "synthetic correction",
+        "cause": "missing-context",
+        "judgement": "synthetic judgement",
+        "failed": false,
+        "at": "2026-09-17T00:41:32.916Z"
+      },
+      {
+        "id": "S-3e59efae8bc43cf7",
+        "change": "issue 7",
+        "stage": "spec",
+        "humanMinutes": 24,
+        "tokens": 31915,
+        "costUsd": 0.63,
+        "contextGiven": "synthetic context",
+        "intervention": "",
+        "cause": "none",
+        "judgement": "",
+        "failed": false,
+        "at": "2026-09-17T00:49:32.916Z"
+      },
+      {
+        "id": "S-7b6b22eff96f6641",
+        "change": "issue 7",
+        "stage": "implement",
+        "humanMinutes": 12,
+        "tokens": 72052,
+        "costUsd": 0.38,
+        "contextGiven": "synthetic context",
+        "intervention": "synthetic correction",
+        "cause": "missing-context",
+        "judgement": "synthetic judgement",
+        "failed": true,
+        "at": "2026-09-17T00:57:32.916Z"
+      },
+      {
+        "id": "S-c0790a4c3684c6bd",
+        "change": "issue 7",
+        "stage": "review",
+        "humanMinutes": 15,
+        "tokens": 42138,
+        "costUsd": 1,
+        "contextGiven": "synthetic context",
+        "intervention": "synthetic correction",
+        "cause": "taste",
+        "judgement": "synthetic judgement",
+        "failed": false,
+        "at": "2026-09-17T01:05:32.916Z"
+      },
+      {
+        "id": "S-614b909a37a85959",
+        "change": "issue 7",
+        "stage": "pr",
+        "humanMinutes": 5,
+        "tokens": 90860,
+        "costUsd": 0.63,
+        "contextGiven": "synthetic context",
+        "intervention": "synthetic correction",
+        "cause": "missing-context",
+        "judgement": "synthetic judgement",
+        "failed": false,
+        "at": "2026-09-17T01:13:32.916Z"
+      }
+    ],
+    "w5": [
+      {
+        "id": "S-4ca256b7619e37c6",
+        "change": "issue 4",
+        "stage": "other",
+        "humanMinutes": 14,
+        "tokens": 92466,
+        "costUsd": 1.7,
+        "contextGiven": "synthetic",
+        "intervention": "",
+        "cause": "none",
+        "judgement": "synthetic",
+        "failed": false,
+        "at": "2026-09-17T01:33:32.916Z"
+      },
+      {
+        "id": "S-4b23056056dccadf",
+        "change": "issue 9",
+        "stage": "other",
+        "humanMinutes": 8,
+        "tokens": 40613,
+        "costUsd": 2.47,
+        "contextGiven": "synthetic",
+        "intervention": "",
+        "cause": "none",
+        "judgement": "synthetic",
+        "failed": true,
+        "at": "2026-09-17T01:53:32.916Z"
+      },
+      {
+        "id": "S-16beb79b2284e0dc",
+        "change": "issue 12",
+        "stage": "other",
+        "humanMinutes": 19,
+        "tokens": 83405,
+        "costUsd": 2.03,
+        "contextGiven": "synthetic",
+        "intervention": "",
+        "cause": "none",
+        "judgement": "synthetic",
+        "failed": false,
+        "at": "2026-09-17T02:13:32.916Z"
+      }
+    ]
+  },
+  "certificates": {
+    "w1:claude-code-101": {
+      "course": "Claude Code 101",
+      "platform": "Claude Academy",
+      "url": "https://credentials.example.org/badge/1",
+      "image": null,
+      "earnedOn": "2026-09-18",
+      "addedAt": "2026-09-16T23:23:32.916Z"
+    },
+    "w1:claude-code-in-action": {
+      "course": "Claude Code in Action",
+      "platform": "Claude Academy",
+      "url": null,
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRg==",
+      "earnedOn": "2026-09-22",
+      "addedAt": "2026-09-16T23:28:32.916Z"
+    }
+  }
+}
